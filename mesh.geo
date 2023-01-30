@@ -1,11 +1,12 @@
 H = 0.41;   // Square side
 L = 2.5;    // Prism lenght
 R = 0.05;   // Cylinder radius
+N = 2;      // Cylinder Layers
 a = 0.5;    // Cylinder center to Inflow Plane
 b = 0.2;    // Cylinder center to Bottom
 
-lc1 = 0.15; // Mesh size 1
-lc2 = 0.03; // Mesh size 2
+lc1 = 1; // Mesh size 1
+lc2 = 1; // Mesh size 2
 
 
 // Points. //////////////////////////////////////////////////////////////////////
@@ -106,10 +107,10 @@ Plane Surface(6) = {6, 7};          // Left
 Surface(7) = {7};                   // Circle
 
 Extrude {0, 0, H} {                 //Cylinder
-    Surface{7}; Layers{1}; Recombine;
+    Surface{7}; Layers{N};
 }
 
-Delete{ Volume{1}; Surface{7}; Surface{42}; }
+Delete{ Volume{1}; Surface{7}; Surface{42}; Point{9}; Point{14};}
 
 Surface Loop(1) = {1, 2, 3, 4, 5, 6};
 Surface Loop(2) = {29:41:4};
