@@ -1,5 +1,5 @@
-#ifndef STOKES_HPP
-#define STOKES_HPP
+#ifndef NAVIER_STOKES_HPP
+#define NAVIER_STOKES_HPP
 
 #include <deal.II/base/conditional_ostream.h>
 #include <deal.II/base/quadrature_lib.h>
@@ -34,8 +34,8 @@
 
 using namespace dealii;
 
-// Class implementing a solver for the Stokes problem.
-class Stokes
+// Class implementing a solver for the Navier-Stokes problem.
+class NavierStokes
 {
 public:
   // Physical dimension (1D, 2D, 3D)
@@ -69,8 +69,9 @@ public:
     vector_value(const Point<dim> & /*p*/,
                  Vector<double> &values) const override
     {
-      for (unsigned int i = 0; i < dim; ++i)
-        values[i] = 0.0;
+      values[0] = 0.0;
+      values[1] = 0.0;
+      values[2] = 0.0;
     }
 
     virtual double
@@ -81,12 +82,7 @@ public:
     }
   };
 
-  // Function for inlet velocity. This actually returns an object with four
-  // components (one for each velocity component, and one for the pressure), but
-  // then only the first three are really used (see the component mask when
-  // applying boundary conditions at the end of assembly). If we only return
-  // three components, however, we may get an error message due to this function
-  // being incompatible with the finite element space.
+  // Function for inlet velocity.
   class InletVelocity : public Function<dim>
   {
   public:
@@ -97,28 +93,26 @@ public:
     virtual void
     vector_value(const Point<dim> &p, Vector<double> &values) const override
     {
-      values[0] = -alpha * p[1] * (2.0 - p[1]) * (1.0 - p[2]) * (2.0 - p[2]);
-
-      for (unsigned int i = 1; i < dim + 1; ++i)
+      values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+      for (unsigned int i = 0; i < dim + 1; ++i)
         values[i] = 0.0;
     }
 
     virtual double
     value(const Point<dim> &p, const unsigned int component = 0) const override
     {
-      if (component == 0)
-        return -alpha * p[1] * (2.0 - p[1]) * (1.0 - p[2]) * (2.0 - p[2]);
-      else
+      if (component == 0){
+          return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));;
+      }
+      else{
         return 0.0;
+      }
     }
 
   protected:
-    const double alpha = 1.0;
+    double Um = 0.45;
+    double H = 0.41;
   };
-
-  // Since we're working with block matrices, we need to make our own
-  // preconditioner class. A preconditioner class can be any class that exposes
-  // a vmult method that applies the inverse of the preconditioner.
 
   // Identity preconditioner.
   class PreconditionIdentity
@@ -160,7 +154,7 @@ public:
     {
       SolverControl                           solver_control_velocity(1000,
                                             1e-2 * src.block(0).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
       solver_cg_velocity.solve(*velocity_stiffness,
                                dst.block(0),
@@ -169,7 +163,7 @@ public:
 
       SolverControl                           solver_control_pressure(1000,
                                             1e-2 * src.block(1).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
       solver_cg_pressure.solve(*pressure_mass,
                                dst.block(1),
@@ -217,7 +211,7 @@ public:
     {
       SolverControl                           solver_control_velocity(1000,
                                             1e-2 * src.block(0).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
       solver_cg_velocity.solve(*velocity_stiffness,
                                dst.block(0),
@@ -230,7 +224,7 @@ public:
 
       SolverControl                           solver_control_pressure(1000,
                                             1e-2 * src.block(1).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
       solver_cg_pressure.solve(*pressure_mass,
                                dst.block(1),
@@ -259,12 +253,12 @@ public:
   };
 
   // Constructor.
-  Stokes(const unsigned int &N_,
-         const unsigned int &degree_velocity_,
-         const unsigned int &degree_pressure_,
-         const double &      T_,
-         const double &      deltat_,
-         const double &      theta_)
+  NavierStokes(const unsigned int &N_,
+               const unsigned int &degree_velocity_,
+               const unsigned int &degree_pressure_,
+               const double &      T_,
+               const double &      deltat_,
+               const double &      theta_)
     : mpi_size(Utilities::MPI::n_mpi_processes(MPI_COMM_WORLD))
     , mpi_rank(Utilities::MPI::this_mpi_process(MPI_COMM_WORLD))
     , pcout(std::cout, mpi_rank == 0)
@@ -286,10 +280,15 @@ public:
   solve();
 
 protected:
-  // Assemble system. We also assemble the pressure mass matrix (needed for the
+  // Assemble recurrent matrices. 
+  // We also assemble the pressure mass matrix (needed for the
   // preconditioner).
   void
-  assemble();
+  assemble_matrices();
+
+  // Assemble system.
+  void
+  assemble_system();
 
   // Solve system at current time.
   void
@@ -313,7 +312,7 @@ protected:
   // Problem definition. ///////////////////////////////////////////////////////
 
   // Kinematic viscosity [m2/s].
-  const double nu = 1;
+  const double nu = 0.01;
 
   // Outlet pressure [Pa].
   const double p_out = 10;
@@ -383,8 +382,11 @@ protected:
   // Pressure mass matrix, needed for preconditioning. We use a block matrix for
   // convenience, but in practice we only look at the pressure-pressure block.
   TrilinosWrappers::BlockSparseMatrix pressure_mass;
+
+  // Matrix on the right-hand side (M / deltat - theta * A).
+  TrilinosWrappers::BlockSparseMatrix lhs_matrix;
   
-  // Matrix on the right-hand side (M / deltat - (1 - theta) A).
+  // Matrix on the right-hand side (M / deltat - (1 - theta) * A).
   TrilinosWrappers::BlockSparseMatrix rhs_matrix;
 
   // Right-hand side vector in the linear system.

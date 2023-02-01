@@ -1,20 +1,17 @@
 #include "Navier-Stokes_TD.hpp"
 
 void
-Stokes::setup()
+NavierStokes::setup()
 {
   // Create the mesh.
   {
     pcout << "Initializing the mesh" << std::endl;
 
     Triangulation<dim> mesh_serial;
-
     GridIn<dim> grid_in;
+
     grid_in.attach_triangulation(mesh_serial);
-
-    const std::string mesh_file_name =
-      "../mesh/mesh.msh";
-
+    const std::string mesh_file_name = "../mesh/mesh.msh";
     std::ifstream grid_in_file(mesh_file_name);
     grid_in.read_msh(grid_in_file);
 
@@ -148,9 +145,9 @@ Stokes::setup()
 
     pcout << "  Initializing the matrices" << std::endl;
     system_matrix.reinit(sparsity);
-    pressure_mass.reinit(sparsity_pressure_mass);
     rhs_matrix.reinit(sparsity);
-
+    lhs_matrix.reinit(sparsity);
+    pressure_mass.reinit(sparsity_pressure_mass);
     pcout << "  Initializing the system right-hand side" << std::endl;
     system_rhs.reinit(block_owned_dofs, MPI_COMM_WORLD);
     pcout << "  Initializing the solution vector" << std::endl;
@@ -160,7 +157,106 @@ Stokes::setup()
 }
 
 void
-Stokes::assemble()
+NavierStokes::assemble_matrices()
+{
+  pcout << "===============================================" << std::endl;
+  pcout << "Assembling the recurrent matrices" << std::endl;
+
+  const unsigned int dofs_per_cell = fe->dofs_per_cell;
+  const unsigned int n_q           = quadrature->size();
+
+  FEValues<dim> fe_values(*fe,
+                          *quadrature,
+                          update_values | update_gradients |
+                          update_quadrature_points | update_JxW_values);
+
+  FullMatrix<double> cell_lhs_matrix(dofs_per_cell, dofs_per_cell);
+  FullMatrix<double> cell_rhs_matrix(dofs_per_cell, dofs_per_cell);
+  FullMatrix<double> cell_pressure_mass_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
+
+  std::vector<types::global_dof_index> dof_indices(dofs_per_cell);
+
+  lhs_matrix    = 0.0;
+  rhs_matrix    = 0.0;
+  pressure_mass = 0.0;
+
+  FEValuesExtractors::Vector velocity(0);
+  FEValuesExtractors::Scalar pressure(dim);
+  for (const auto &cell : dof_handler.active_cell_iterators())
+    {
+      if (!cell->is_locally_owned())
+        continue;
+
+      fe_values.reinit(cell);
+
+      cell_lhs_matrix           = 0.0;
+      cell_rhs_matrix           = 0.0;
+      cell_pressure_mass_matrix = 0.0;
+
+      for (unsigned int q = 0; q < n_q; ++q)
+        {
+          for (unsigned int i = 0; i < dofs_per_cell; ++i)
+            {
+              for (unsigned int j = 0; j < dofs_per_cell; ++j)
+                { 
+                  // M/deltaT
+                  cell_lhs_matrix(i, j) += 
+                    scalar_product(fe_values[velocity].value(i, q),
+                                   fe_values[velocity].value(j, q)) /
+                    deltat * fe_values.JxW(q);
+
+                  // A*theta                 
+                  cell_lhs_matrix(i, j) +=
+                    nu * theta * 
+                    scalar_product(fe_values[velocity].gradient(i, q),
+                                   fe_values[velocity].gradient(j, q)) *
+                    fe_values.JxW(q);
+
+                  // Pressure term in the momentum equation.
+                  cell_lhs_matrix(i, j) -= fe_values[velocity].divergence(i, q) *
+                                           fe_values[pressure].value(j, q) *
+                                           fe_values.JxW(q);
+
+                  // Pressure term in the continuity equation.
+                  cell_lhs_matrix(i, j) -= fe_values[velocity].divergence(j, q) *
+                                           fe_values[pressure].value(i, q) *
+                                           fe_values.JxW(q);
+
+                  // M/deltaT
+                  cell_rhs_matrix(i, j) += 
+                    scalar_product(fe_values[velocity].value(i, q),
+                                   fe_values[velocity].value(j, q)) /
+                    deltat * fe_values.JxW(q);
+
+                  // A*(1-theta)               
+                  cell_rhs_matrix(i, j) +=
+                    nu * (1.0 - theta) * 
+                    scalar_product(fe_values[velocity].gradient(i, q),
+                                   fe_values[velocity].gradient(j, q)) *
+                    fe_values.JxW(q);
+
+                  // Pressure mass matrix.
+                  cell_pressure_mass_matrix(i, j) +=
+                    fe_values[pressure].value(i, q) *
+                    fe_values[pressure].value(j, q) / nu * fe_values.JxW(q);
+                }
+            }
+        }
+
+      cell->get_dof_indices(dof_indices);
+
+      lhs_matrix.add(dof_indices, cell_lhs_matrix);
+      rhs_matrix.add(dof_indices, cell_rhs_matrix);
+      pressure_mass.add(dof_indices, cell_pressure_mass_matrix);
+    }
+
+  lhs_matrix.compress(VectorOperation::add);
+  rhs_matrix.compress(VectorOperation::add);
+  pressure_mass.compress(VectorOperation::add);
+}
+
+void
+NavierStokes::assemble_system()
 {
   pcout << "===============================================" << std::endl;
   pcout << "Assembling the system" << std::endl;
@@ -179,22 +275,18 @@ Stokes::assemble()
                                    update_values | update_normal_vectors |
                                    update_JxW_values);
 
-  FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);                 // M/deltaT + A*theta (da aggiungere componente non lineare)
-  FullMatrix<double> cell_matrix_rhs(dofs_per_cell, dofs_per_cell);             // M/deltaT + A*(1-theta)
-  FullMatrix<double> cell_pressure_mass_matrix(dofs_per_cell, dofs_per_cell);   // Realizzata per il precondizionatore
-  Vector<double>     cell_rhs(dofs_per_cell);                                   // Rhs del sistema
+  FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);
+  Vector<double>     cell_rhs(dofs_per_cell);
 
   std::vector<types::global_dof_index> dof_indices(dofs_per_cell);
 
   system_matrix = 0.0;
-  rhs_matrix    = 0.0;
   system_rhs    = 0.0;
-  pressure_mass = 0.0;
 
   FEValuesExtractors::Vector velocity(0);
   FEValuesExtractors::Scalar pressure(dim);
 
-    std::vector<Tensor<1, dim>>         velocity_loc(n_q);
+  std::vector<Tensor<1, dim>> velocity_loc(n_q);
   std::vector<Tensor<2, dim>> velocity_gradient_loc(n_q);
 
   for (const auto &cell : dof_handler.active_cell_iterators())
@@ -204,75 +296,24 @@ Stokes::assemble()
 
       fe_values.reinit(cell);
 
-      cell_matrix               = 0.0;
-      cell_matrix_rhs           = 0.0;
-      cell_rhs                  = 0.0;
-      cell_pressure_mass_matrix = 0.0;
+      cell_matrix = 0.0;
+      cell_rhs    = 0.0;
 
-      if(true){
-        fe_values[velocity].get_function_values(solution, velocity_loc);
-        fe_values[velocity].get_function_gradients(solution, velocity_gradient_loc);
-      }
+      fe_values[velocity].get_function_values(solution, velocity_loc);
+      fe_values[velocity].get_function_gradients(solution, velocity_gradient_loc);
 
       for (unsigned int q = 0; q < n_q; ++q)
         {
-
-          double present_velocity_divergence = 0.0;
-          if(true){
-                present_velocity_divergence = trace(velocity_gradient_loc[q]);}
+          double present_velocity_divergence = trace(velocity_gradient_loc[q]);
 
           for (unsigned int i = 0; i < dofs_per_cell; ++i)
             {
               for (unsigned int j = 0; j < dofs_per_cell; ++j)
                 { 
-                  // M/deltaT
-                  cell_matrix(i, j) += 
-                    scalar_product(fe_values[velocity].value(i, q),
-                                   fe_values[velocity].value(j, q)) /
-                    deltat * fe_values.JxW(q);
-
-                  // A*theta                 
-                  cell_matrix(i, j) +=
-                    nu * theta * 
-                    scalar_product(fe_values[velocity].gradient(i, q),
-                                   fe_values[velocity].gradient(j, q)) *
-                    fe_values.JxW(q);
-
-                  // Pressure term in the momentum equation.
-                  cell_matrix(i, j) -= fe_values[velocity].divergence(i, q) *
-                                       fe_values[pressure].value(j, q) *
-                                       fe_values.JxW(q);
-
-                  // Pressure term in the continuity equation.
-                  cell_matrix(i, j) -= fe_values[velocity].divergence(j, q) *
-                                       fe_values[pressure].value(i, q) *
-                                       fe_values.JxW(q);
-
-                   if(true){
                   cell_matrix(i, j) += 0.5 * velocity_loc[q] * fe_values[velocity].gradient(j, q) * fe_values[velocity].value(i, q) *
                                        fe_values.JxW(q);
                   cell_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[velocity].value(j, q) * fe_values[velocity].value(i, q) *
-                                       fe_values.JxW(q);                                       
-                                       }                                      
-
-                  // Pressure mass matrix.
-                  cell_pressure_mass_matrix(i, j) +=
-                    fe_values[pressure].value(i, q) *
-                    fe_values[pressure].value(j, q) / nu * fe_values.JxW(q);
-                  
-                  // Rhs matrix.
-                  // M/deltaT
-                  cell_matrix_rhs(i, j) += 
-                    scalar_product(fe_values[velocity].value(i, q),
-                                   fe_values[velocity].value(j, q)) /
-                    deltat * fe_values.JxW(q);
-
-                  // A*(1-theta)               
-                  cell_matrix_rhs(i, j) +=
-                    nu * (1.0 - theta) * 
-                    scalar_product(fe_values[velocity].gradient(i, q),
-                                   fe_values[velocity].gradient(j, q)) *
-                    fe_values.JxW(q);
+                                       fe_values.JxW(q);
                 }
 
               // Compute F(t_n)
@@ -331,18 +372,15 @@ Stokes::assemble()
       cell->get_dof_indices(dof_indices);
 
       system_matrix.add(dof_indices, cell_matrix);
-      rhs_matrix.add(dof_indices, cell_matrix_rhs);
       system_rhs.add(dof_indices, cell_rhs);
-      pressure_mass.add(dof_indices, cell_pressure_mass_matrix);
     }
 
   system_matrix.compress(VectorOperation::add);
-  rhs_matrix.compress(VectorOperation::add);
   system_rhs.compress(VectorOperation::add);
-  pressure_mass.compress(VectorOperation::add);
 
   // rhs = (M/deltaT + A*(1-theta))*u_n + (1-theta)*F(t_n) + theta*F(t_n+1) 
   rhs_matrix.vmult_add(system_rhs, solution_owned);
+  system_matrix.add(1.0, lhs_matrix);
 
   // Dirichlet boundary conditions.
   {
@@ -374,7 +412,7 @@ Stokes::assemble()
 }
 
 void
-Stokes::solve_time_step()
+NavierStokes::solve_time_step()
 {
   pcout << "===============================================" << std::endl;
 
@@ -400,11 +438,12 @@ Stokes::solve_time_step()
 }
 
 void
-Stokes::solve()
+NavierStokes::solve()
 { 
   pcout << "===============================================" << std::endl;
 
   time = 0.0;
+  assemble_matrices();
 
   // Apply the initial condition.
   {
@@ -429,14 +468,14 @@ Stokes::solve()
       pcout << "n = " << std::setw(3) << time_step << ", t = " << std::setw(5)
             << time << ":\n" << std::flush;
 
-      assemble();
+      assemble_system();
       solve_time_step();
       output(time_step, time);
     }
 }
 
 void
-Stokes::output(const unsigned int &time_step, const double &time)
+NavierStokes::output(const unsigned int &time_step, const double &time)
 {
   pcout << "===============================================" << std::endl;
 
