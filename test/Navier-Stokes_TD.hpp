@@ -69,15 +69,18 @@ public:
     vector_value(const Point<dim> & /*p*/,
                  Vector<double> &values) const override
     {
-      for (unsigned int i = 0; i < dim; ++i)
-        values[i] = 0.0;
+      values[0] = 0.0;
+      values[1] = 0.0;
+      values[2] = 0.0;
     }
 
     virtual double
     value(const Point<dim> & /*p*/,
           const unsigned int /*component*/ = 0) const override
     {
+
       return 0.0;
+  
     }
   };
 
@@ -97,24 +100,26 @@ public:
     virtual void
     vector_value(const Point<dim> &p, Vector<double> &values) const override
     {
-      values[0] = -alpha * p[1] * (2.0 - p[1]) * (1.0 - p[2]) * (2.0 - p[2]);
-
-      for (unsigned int i = 1; i < dim + 1; ++i)
+      values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+      for (unsigned int i = 0; i < dim + 1; ++i)
         values[i] = 0.0;
     }
 
     virtual double
     value(const Point<dim> &p, const unsigned int component = 0) const override
     {
-      if (component == 0)
-        return -alpha * p[1] * (2.0 - p[1]) * (1.0 - p[2]) * (2.0 - p[2]);
-      else
+      if (component == 0){
+          return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));;
+      }
+      else{
         return 0.0;
+      }
     }
 
   protected:
-    const double alpha = 1.0;
-  };
+    double Um = 0.45;
+    double H = 0.41;
+      };
 
   // Since we're working with block matrices, we need to make our own
   // preconditioner class. A preconditioner class can be any class that exposes
@@ -160,7 +165,7 @@ public:
     {
       SolverControl                           solver_control_velocity(1000,
                                             1e-2 * src.block(0).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
       solver_cg_velocity.solve(*velocity_stiffness,
                                dst.block(0),
@@ -169,7 +174,7 @@ public:
 
       SolverControl                           solver_control_pressure(1000,
                                             1e-2 * src.block(1).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
       solver_cg_pressure.solve(*pressure_mass,
                                dst.block(1),
@@ -217,7 +222,7 @@ public:
     {
       SolverControl                           solver_control_velocity(1000,
                                             1e-2 * src.block(0).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
       solver_cg_velocity.solve(*velocity_stiffness,
                                dst.block(0),
@@ -230,7 +235,7 @@ public:
 
       SolverControl                           solver_control_pressure(1000,
                                             1e-2 * src.block(1).l2_norm());
-      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
       solver_cg_pressure.solve(*pressure_mass,
                                dst.block(1),
@@ -313,7 +318,7 @@ protected:
   // Problem definition. ///////////////////////////////////////////////////////
 
   // Kinematic viscosity [m2/s].
-  const double nu = 1.0;
+  const double nu = 0.01;
 
   // Outlet pressure [Pa].
   const double p_out = 10;
