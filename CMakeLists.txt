@@ -3,5 +3,5 @@ project(lab01 LANGUAGES CXX C)
 
 include(common/cmake-common.cmake)
 
-add_executable(lab-09 test/lab-09.cpp test/Stokes_TI.cpp)
+add_executable(lab-09 test/main.cpp test/Navier-Stokes_TD.cpp)
 deal_ii_setup_target(lab-09)
