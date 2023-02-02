@@ -252,6 +252,107 @@ public:
     mutable TrilinosWrappers::MPI::Vector tmp;
   };
 
+
+  // PCD preconditioner.
+  class PreconditionBlockPCD
+  {
+  public:
+    // Initialize the preconditioner, given the F matrix, the
+    // pressure mass matrix, the B matrix, the Ap matrix and
+    // the Fp matrix.
+    void
+    initialize(const TrilinosWrappers::SparseMatrix &F_,
+               const TrilinosWrappers::SparseMatrix &pressure_mass_,
+               const TrilinosWrappers::SparseMatrix &B_,
+               const TrilinosWrappers::SparseMatrix &Ap_,
+               const TrilinosWrappers::SparseMatrix &Fp_)
+    {
+      F                  = &F_;
+      pressure_mass      = &pressure_mass_;
+      B                  = &B_;
+      Ap                 = &Ap_;
+      Fp                 = &Fp_;
+
+      preconditioner_F.initialize(F_);
+      preconditioner_pressure.initialize(pressure_mass_);
+      preconditioner_Ap.initialize(Ap_);  
+    }
+
+    // Application of the preconditioner.
+    void
+    vmult(TrilinosWrappers::MPI::BlockVector &      dst,
+          const TrilinosWrappers::MPI::BlockVector &src) const
+    {
+      // block 0
+
+      tmp1.reinit(src.block(0));
+      tmp2.reinit(src.block(0));
+
+      SolverControl solver_control_pressure(1000, 1e-2 * src.block(0).l2_norm());
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(solver_control_pressure);
+      solver_cg_pressure.solve(*pressure_mass,
+                               tmp1,
+                               src.block(1),
+                               preconditioner_pressure);
+  
+      Fp->vmult(tmp2, tmp1);
+
+      SolverControl solver_control_Ap(1000, 1e-2 * src.block(0).l2_norm());
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_Ap(solver_control_Ap);
+      solver_cg_Ap.solve(*Ap,
+                          tmp1,
+                          tmp2,
+                          preconditioner_Ap);
+
+      B->transpose();
+
+      B->vmult(tmp2, tmp1);
+
+      tmp2.sadd(1.0, src.block(0));
+
+      SolverControl solver_control_F(1000, 1e-2 * src.block(0).l2_norm());
+      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_F(solver_control_F);
+      solver_cg_F.solve (*F,
+                          dst.block(0),
+                          tmp2,
+                          preconditioner_F);
+
+      // block 1
+
+      dst.block(1).sadd(-1.0, tmp1); // non sicuro
+
+    }
+
+  protected:
+    // F matrix.
+    const TrilinosWrappers::SparseMatrix *F;
+
+    // Preconditioner used for the F block.
+    TrilinosWrappers::PreconditionILU preconditioner_F;
+
+    // Pressure mass matrix.
+    const TrilinosWrappers::SparseMatrix *pressure_mass;
+
+    // Preconditioner used for the pressure block.
+    TrilinosWrappers::PreconditionILU preconditioner_pressure;
+
+    // B matrix.
+    const TrilinosWrappers::SparseMatrix *B;
+
+    // Ap matrix.
+    const TrilinosWrappers::SparseMatrix *Ap;
+
+    // Preconditioner used for the Ap block.
+    TrilinosWrappers::PreconditionILU preconditioner_Ap;
+
+    // Fp matrix.
+    const TrilinosWrappers::SparseMatrix *Fp;
+
+    // Temporary vectors.
+    mutable TrilinosWrappers::MPI::Vector tmp1;
+    mutable TrilinosWrappers::MPI::Vector tmp2;
+  };
+
   // Constructor.
   NavierStokes(const unsigned int &N_,
                const unsigned int &degree_velocity_,
