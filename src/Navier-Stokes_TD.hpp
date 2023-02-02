@@ -94,7 +94,7 @@ public:
     vector_value(const Point<dim> &p, Vector<double> &values) const override
     {
       values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
-      for (unsigned int i = 0; i < dim + 1; ++i)
+      for (unsigned int i = 1; i < dim + 1; ++i)
         values[i] = 0.0;
     }
 
@@ -315,7 +315,7 @@ protected:
   const double nu = 0.01;
 
   // Outlet pressure [Pa].
-  const double p_out = 10;
+  const double p_out = 0.0;
 
   // Forcing term.
   ForcingTerm forcing_term;
