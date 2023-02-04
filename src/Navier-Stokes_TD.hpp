@@ -264,12 +264,14 @@ public:
     initialize(const TrilinosWrappers::SparseMatrix &F_,
                const TrilinosWrappers::SparseMatrix &pressure_mass_,
                const TrilinosWrappers::SparseMatrix &B_,
+               const TrilinosWrappers::SparseMatrix &Bt_,
                const TrilinosWrappers::SparseMatrix &Ap_,
                const TrilinosWrappers::SparseMatrix &Fp_)
     {
       F                  = &F_;
       pressure_mass      = &pressure_mass_;
       B                  = &B_;
+      Bt                  = &Bt_;
       Ap                 = &Ap_;
       Fp                 = &Fp_;
 
@@ -283,6 +285,7 @@ public:
     vmult(TrilinosWrappers::MPI::BlockVector &      dst,
           const TrilinosWrappers::MPI::BlockVector &src) const
     {
+
       // block 0
 
       tmp1.reinit(src.block(0));
@@ -304,9 +307,8 @@ public:
                           tmp2,
                           preconditioner_Ap);
 
-      B->transpose();
 
-      B->vmult(tmp2, tmp1);
+      Bt->vmult(tmp2, tmp1);
 
       tmp2.sadd(1.0, src.block(0));
 
@@ -338,6 +340,9 @@ public:
 
     // B matrix.
     const TrilinosWrappers::SparseMatrix *B;
+
+        // B matrix.
+    const TrilinosWrappers::SparseMatrix *Bt;
 
     // Ap matrix.
     const TrilinosWrappers::SparseMatrix *Ap;
@@ -483,6 +488,12 @@ protected:
   // Pressure mass matrix, needed for preconditioning. We use a block matrix for
   // convenience, but in practice we only look at the pressure-pressure block.
   TrilinosWrappers::BlockSparseMatrix pressure_mass;
+
+  
+  //preconditioner
+  TrilinosWrappers::BlockSparseMatrix Fp_matrix;
+
+  TrilinosWrappers::BlockSparseMatrix inverse_diagonal_mass_matrix;
 
   // Matrix on the right-hand side (M / deltat - theta * A).
   TrilinosWrappers::BlockSparseMatrix lhs_matrix;

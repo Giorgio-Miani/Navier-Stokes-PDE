@@ -125,6 +125,23 @@ NavierStokes::setup()
     DoFTools::make_sparsity_pattern(dof_handler, coupling, sparsity);
     sparsity.compress();
 
+    //Sparsity pattern for velocity mass matrix
+    for (unsigned int c = 0; c < dim + 1; ++c)
+      {
+        for (unsigned int d = 0; d < dim + 1; ++d)
+          {
+            if (c == dim || d == dim) // pressure-pressure term
+              coupling[c][d] = DoFTools::none;
+            else // other combinations
+              coupling[c][d] = DoFTools::always;
+          }
+      }
+
+    TrilinosWrappers::BlockSparsityPattern sparsity_velocity_mass(block_owned_dofs,
+                                                    MPI_COMM_WORLD);
+    DoFTools::make_sparsity_pattern(dof_handler, coupling, sparsity_velocity_mass);
+    sparsity_velocity_mass.compress();
+
     // We also build a sparsity pattern for the pressure mass matrix.
     for (unsigned int c = 0; c < dim + 1; ++c)
       {
@@ -148,6 +165,9 @@ NavierStokes::setup()
     rhs_matrix.reinit(sparsity);
     lhs_matrix.reinit(sparsity);
     pressure_mass.reinit(sparsity_pressure_mass);
+    //Initialize preconditioner Fp, not user if the sparsity pattern is right
+    inverse_diagonal_mass_matrix.reinit(sparsity_velocity_mass);
+    Fp_matrix.reinit(sparsity_pressure_mass);
     pcout << "  Initializing the system right-hand side" << std::endl;
     system_rhs.reinit(block_owned_dofs, MPI_COMM_WORLD);
     pcout << "  Initializing the solution vector" << std::endl;
@@ -173,12 +193,16 @@ NavierStokes::assemble_matrices()
   FullMatrix<double> cell_lhs_matrix(dofs_per_cell, dofs_per_cell);
   FullMatrix<double> cell_rhs_matrix(dofs_per_cell, dofs_per_cell);
   FullMatrix<double> cell_pressure_mass_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
+  FullMatrix<double> cell_inverse_diagonal_mass_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
+
 
   std::vector<types::global_dof_index> dof_indices(dofs_per_cell);
 
   lhs_matrix    = 0.0;
   rhs_matrix    = 0.0;
   pressure_mass = 0.0;
+  inverse_diagonal_mass_matrix = 0.0;
+
 
   FEValuesExtractors::Vector velocity(0);
   FEValuesExtractors::Scalar pressure(dim);
@@ -192,6 +216,7 @@ NavierStokes::assemble_matrices()
       cell_lhs_matrix           = 0.0;
       cell_rhs_matrix           = 0.0;
       cell_pressure_mass_matrix = 0.0;
+      cell_inverse_diagonal_mass_matrix = 0.0;
 
       for (unsigned int q = 0; q < n_q; ++q)
         {
@@ -204,6 +229,14 @@ NavierStokes::assemble_matrices()
                     scalar_product(fe_values[velocity].value(i, q),
                                    fe_values[velocity].value(j, q)) /
                     deltat * fe_values.JxW(q);
+
+                      // double value = scalar_product(fe_values[velocity].value(i, q),
+                      //              fe_values[velocity].value(j, q)) * fe_values.JxW(q);
+
+                      cell_inverse_diagonal_mass_matrix(i, j) += scalar_product(fe_values[velocity].value(i, q),
+                                   fe_values[velocity].value(j, q)) * fe_values.JxW(q);;
+                  
+
 
                   // A*theta                 
                   cell_lhs_matrix(i, j) +=
@@ -239,6 +272,8 @@ NavierStokes::assemble_matrices()
                   cell_pressure_mass_matrix(i, j) +=
                     fe_values[pressure].value(i, q) *
                     fe_values[pressure].value(j, q) / nu * fe_values.JxW(q);
+
+                
                 }
             }
         }
@@ -248,11 +283,14 @@ NavierStokes::assemble_matrices()
       lhs_matrix.add(dof_indices, cell_lhs_matrix);
       rhs_matrix.add(dof_indices, cell_rhs_matrix);
       pressure_mass.add(dof_indices, cell_pressure_mass_matrix);
+      inverse_diagonal_mass_matrix.add(dof_indices, cell_inverse_diagonal_mass_matrix);
     }
 
   lhs_matrix.compress(VectorOperation::add);
   rhs_matrix.compress(VectorOperation::add);
   pressure_mass.compress(VectorOperation::add);
+  inverse_diagonal_mass_matrix.compress(VectorOperation::add);
+
 }
 
 void
@@ -277,11 +315,15 @@ NavierStokes::assemble_system()
 
   FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);
   Vector<double>     cell_rhs(dofs_per_cell);
+  FullMatrix<double> cell_Fp_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
+
 
   std::vector<types::global_dof_index> dof_indices(dofs_per_cell);
 
   system_matrix = 0.0;
   system_rhs    = 0.0;
+  Fp_matrix = 0.0;
+
 
   FEValuesExtractors::Vector velocity(0);
   FEValuesExtractors::Scalar pressure(dim);
@@ -298,6 +340,7 @@ NavierStokes::assemble_system()
 
       cell_matrix = 0.0;
       cell_rhs    = 0.0;
+      cell_Fp_matrix = 0.0;
 
       fe_values[velocity].get_function_values(solution, velocity_loc);
       fe_values[velocity].get_function_gradients(solution, velocity_gradient_loc);
@@ -314,6 +357,26 @@ NavierStokes::assemble_system()
                                        fe_values.JxW(q);
                   cell_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[velocity].value(j, q) * fe_values[velocity].value(i, q) *
                                        fe_values.JxW(q);
+
+
+                  //////////////////////////Constuct preconditioner Fp//////////////////////
+                   // M/deltaT
+                  cell_Fp_matrix(i, j) += fe_values[pressure].value(i, q) *
+                                   fe_values[pressure].value(j, q) /
+                    deltat * fe_values.JxW(q);
+
+                  // A*theta                 
+                  cell_Fp_matrix(i, j) +=
+                    nu * theta * 
+                    scalar_product(fe_values[pressure].gradient(i, q),
+                                   fe_values[pressure].gradient(j, q)) *
+                    fe_values.JxW(q);
+
+
+                  cell_Fp_matrix(i, j) += 0.5 * velocity_loc[q] * fe_values[pressure].gradient(j, q) * fe_values[pressure].value(i, q) *
+                                       fe_values.JxW(q);
+                  cell_Fp_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[pressure].value(j, q) * fe_values[pressure].value(i, q) *
+                                       fe_values.JxW(q);                                       
                 }
 
               // Compute F(t_n)
@@ -373,10 +436,12 @@ NavierStokes::assemble_system()
 
       system_matrix.add(dof_indices, cell_matrix);
       system_rhs.add(dof_indices, cell_rhs);
+      Fp_matrix.add(dof_indices, cell_Fp_matrix);
     }
 
   system_matrix.compress(VectorOperation::add);
   system_rhs.compress(VectorOperation::add);
+  Fp_matrix.compress(VectorOperation::add);
 
   // rhs = (M/deltaT + A*(1-theta))*u_n + (1-theta)*F(t_n) + theta*F(t_n+1) 
   rhs_matrix.vmult_add(system_rhs, solution_owned);
@@ -420,9 +485,22 @@ NavierStokes::solve_time_step()
 
   SolverGMRES<TrilinosWrappers::MPI::BlockVector> solver(solver_control);
 
-  PreconditionBlockDiagonal preconditioner;
-  preconditioner.initialize(system_matrix.block(0, 0),
-                            pressure_mass.block(1, 1));
+  TrilinosWrappers::MPI::Vector diagonal;
+      {
+      for (unsigned int i = 0; i < inverse_diagonal_mass_matrix.block(0,0).m(); ++i)
+        {
+          auto value = inverse_diagonal_mass_matrix.block(0,0).diag_element(i);
+          diagonal(i) = (1.0/value);
+        }
+      }
+  system_matrix.block(1,0).mmult(inverse_diagonal_mass_matrix.block(0,0), system_matrix.block(0,1), diagonal);
+
+  PreconditionBlockPCD preconditioner;
+  preconditioner.initialize(system_matrix.block(0,0), pressure_mass.block(1,1), system_matrix.block(1, 0), system_matrix.block(0, 1),inverse_diagonal_mass_matrix.block(0,0), Fp_matrix.block(1,1));  
+
+  // PreconditionBlockDiagonal preconditioner;
+  // preconditioner.initialize(system_matrix.block(0, 0),
+  //                           pressure_mass.block(1, 1));
 
   // PreconditionBlockTriangular preconditioner;
   // preconditioner.initialize(system_matrix.block(0, 0),
@@ -444,6 +522,7 @@ NavierStokes::solve()
 
   time = 0.0;
   assemble_matrices();
+
 
   // Apply the initial condition.
   {
