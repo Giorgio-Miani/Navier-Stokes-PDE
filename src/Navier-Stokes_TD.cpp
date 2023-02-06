@@ -173,6 +173,10 @@ NavierStokes::setup()
     pcout << "  Initializing the solution vector" << std::endl;
     solution_owned.reinit(block_owned_dofs, MPI_COMM_WORLD);
     solution.reinit(block_owned_dofs, block_relevant_dofs, MPI_COMM_WORLD);
+
+    pcout << "-----------------------------------------------" << std::endl;
+    Re = rho * inlet_velocity.maxVelocity() * 0.1 / nu;
+    pcout << "Reynolds number: " << Re << std::endl;
   }
 }
 
@@ -192,7 +196,7 @@ NavierStokes::assemble_matrices()
 
   FullMatrix<double> cell_lhs_matrix(dofs_per_cell, dofs_per_cell);
   FullMatrix<double> cell_rhs_matrix(dofs_per_cell, dofs_per_cell);
-  FullMatrix<double> cell_pressure_mass_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
+  FullMatrix<double> cell_pressure_mass_matrix(dofs_per_cell, dofs_per_cell);         //Per precondizionatore
   FullMatrix<double> cell_inverse_diagonal_mass_matrix(dofs_per_cell, dofs_per_cell); //Per precondizionatore
 
 
@@ -230,13 +234,11 @@ NavierStokes::assemble_matrices()
                                    fe_values[velocity].value(j, q)) /
                     deltat * fe_values.JxW(q);
 
-                      // double value = scalar_product(fe_values[velocity].value(i, q),
-                      //              fe_values[velocity].value(j, q)) * fe_values.JxW(q);
+                  // double value = scalar_product(fe_values[velocity].value(i, q),
+                  //              fe_values[velocity].value(j, q)) * fe_values.JxW(q);
 
-                      cell_inverse_diagonal_mass_matrix(i, j) += scalar_product(fe_values[velocity].value(i, q),
+                  cell_inverse_diagonal_mass_matrix(i, j) += scalar_product(fe_values[velocity].value(i, q),
                                    fe_values[velocity].value(j, q)) * fe_values.JxW(q);;
-                  
-
 
                   // A*theta                 
                   cell_lhs_matrix(i, j) +=
@@ -353,14 +355,16 @@ NavierStokes::assemble_system()
             {
               for (unsigned int j = 0; j < dofs_per_cell; ++j)
                 { 
-                  cell_matrix(i, j) += 0.5 * velocity_loc[q] * fe_values[velocity].gradient(j, q) * fe_values[velocity].value(i, q) *
-                                       fe_values.JxW(q);
-                  cell_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[velocity].value(j, q) * fe_values[velocity].value(i, q) *
-                                       fe_values.JxW(q);
+                  // cell_matrix(i, j) += 0.5 * velocity_loc[q] * fe_values[velocity].gradient(j, q) * fe_values[velocity].value(i, q) *
+                  //                      fe_values.JxW(q);
+                  // cell_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[velocity].value(j, q) * fe_values[velocity].value(i, q) *
+                  //                      fe_values.JxW(q);
 
+                  cell_matrix(i, j) += rho * velocity_loc[q] * fe_values[velocity].gradient(j, q) * fe_values[velocity].value(i, q) *
+                                       fe_values.JxW(q);
 
                   //////////////////////////Constuct preconditioner Fp//////////////////////
-                   // M/deltaT
+                  // M/deltaT
                   cell_Fp_matrix(i, j) += fe_values[pressure].value(i, q) *
                                    fe_values[pressure].value(j, q) /
                     deltat * fe_values.JxW(q);
@@ -455,6 +459,7 @@ NavierStokes::assemble_system()
     // We interpolate first the inlet velocity condition alone, then the wall
     // condition alone, so that the latter "win" over the former where the two
     // boundaries touch.
+    inlet_velocity.set_time(time);
     boundary_functions[1] = &inlet_velocity;
     VectorTools::interpolate_boundary_values(dof_handler,
                                              boundary_functions,
@@ -495,12 +500,12 @@ NavierStokes::solve_time_step()
       }
   system_matrix.block(1,0).mmult(inverse_diagonal_mass_matrix.block(0,0), system_matrix.block(0,1), diagonal);
 
-  PreconditionBlockPCD preconditioner;
-  preconditioner.initialize(system_matrix.block(0,0), pressure_mass.block(1,1), system_matrix.block(1, 0), system_matrix.block(0, 1),inverse_diagonal_mass_matrix.block(0,0), Fp_matrix.block(1,1));  
+  // PreconditionBlockPCD preconditioner;
+  // preconditioner.initialize(system_matrix.block(0,0), pressure_mass.block(1,1), system_matrix.block(1, 0), system_matrix.block(0, 1),inverse_diagonal_mass_matrix.block(0,0), Fp_matrix.block(1,1));  
 
-  // PreconditionBlockDiagonal preconditioner;
-  // preconditioner.initialize(system_matrix.block(0, 0),
-  //                           pressure_mass.block(1, 1));
+  PreconditionBlockDiagonal preconditioner;
+  preconditioner.initialize(system_matrix.block(0, 0),
+                            pressure_mass.block(1, 1));
 
   // PreconditionBlockTriangular preconditioner;
   // preconditioner.initialize(system_matrix.block(0, 0),

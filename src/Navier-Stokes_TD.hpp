@@ -90,10 +90,20 @@ public:
       : Function<dim>(dim + 1)
     {}
 
+    double
+    maxVelocity() const
+    {
+      return 16 * Um;
+    }
+
     virtual void
     vector_value(const Point<dim> &p, Vector<double> &values) const override
-    {
-      values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+    { 
+      // Case 1.
+      // values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+      // Case 2.
+      values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
+      
       for (unsigned int i = 1; i < dim + 1; ++i)
         values[i] = 0.0;
     }
@@ -102,7 +112,10 @@ public:
     value(const Point<dim> &p, const unsigned int component = 0) const override
     {
       if (component == 0){
-          return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));;
+          // Case 1.
+          // return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+          // Case 2.
+          return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
       }
       else{
         return 0.0;
@@ -110,7 +123,11 @@ public:
     }
 
   protected:
-    double Um = 0.45;
+    // Case 1.
+    // double Um = 0.45;
+    // Case 2.
+    double Um = 2.25;
+
     double H = 0.41;
   };
 
@@ -359,8 +376,7 @@ public:
   };
 
   // Constructor.
-  NavierStokes(const unsigned int &N_,
-               const unsigned int &degree_velocity_,
+  NavierStokes(const unsigned int &degree_velocity_,
                const unsigned int &degree_pressure_,
                const double &      T_,
                const double &      deltat_,
@@ -369,7 +385,6 @@ public:
     , mpi_rank(Utilities::MPI::this_mpi_process(MPI_COMM_WORLD))
     , pcout(std::cout, mpi_rank == 0)
     , T(T_)
-    , N(N_)
     , degree_velocity(degree_velocity_)
     , degree_pressure(degree_pressure_)
     , deltat(deltat_)
@@ -418,7 +433,13 @@ protected:
   // Problem definition. ///////////////////////////////////////////////////////
 
   // Kinematic viscosity [m2/s].
-  const double nu = 0.01;
+  const double nu = 0.5;
+
+  // Fluid density.
+  const double rho = 0.3;
+
+  // Reynolds number.
+  double Re;
 
   // Outlet pressure [Pa].
   const double p_out = 0.0;
@@ -439,9 +460,6 @@ protected:
   const double T;
 
   // Discretization. ///////////////////////////////////////////////////////////
-
-  // Mesh refinement.
-  const unsigned int N;
 
   // Polynomial degree used for velocity.
   const unsigned int degree_velocity;
@@ -489,12 +507,12 @@ protected:
   // convenience, but in practice we only look at the pressure-pressure block.
   TrilinosWrappers::BlockSparseMatrix pressure_mass;
 
-  
-  //preconditioner
+  // Preconditioner
   TrilinosWrappers::BlockSparseMatrix Fp_matrix;
-
   TrilinosWrappers::BlockSparseMatrix inverse_diagonal_mass_matrix;
 
+
+  // PROBLEM SPECIFIC MATRICES AND VECTORS
   // Matrix on the right-hand side (M / deltat - theta * A).
   TrilinosWrappers::BlockSparseMatrix lhs_matrix;
   
