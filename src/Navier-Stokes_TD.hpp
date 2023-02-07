@@ -432,14 +432,17 @@ protected:
 
   // Problem definition. ///////////////////////////////////////////////////////
 
+  // Cylinder diameter.
+  const double cylinder_diameter = 0.1;
+
+  // Cylinder height 
+  const double cylinder_height = 0.41;
+
   // Kinematic viscosity [m2/s].
   const double nu = 0.5;
 
   // Fluid density.
   const double rho = 0.3;
-
-  // Reynolds number.
-  double Re;
 
   // Outlet pressure [Pa].
   const double p_out = 0.0;
@@ -458,6 +461,20 @@ protected:
 
   // Final time.
   const double T;
+
+  // Reynolds number.
+  const double Re = rho * inlet_velocity.maxVelocity() * cylinder_diameter / nu;
+
+  // Drag/Lift coefficient. ////////////////////////////////////////////////////
+
+  // Drag/Lift coefficient multiplicative constant.
+  const double multiplicative_const = 2.0 / (rho * inlet_velocity.maxVelocity() * inlet_velocity.maxVelocity() * cylinder_diameter * cylinder_height); 
+
+  // Drag coefficient at step k.
+  double drag_coefficient; 
+
+  // Lift coefficient at step k.
+  double lift_coefficient;
 
   // Discretization. ///////////////////////////////////////////////////////////
 
@@ -510,7 +527,6 @@ protected:
   // Preconditioner
   TrilinosWrappers::BlockSparseMatrix Fp_matrix;
   TrilinosWrappers::BlockSparseMatrix inverse_diagonal_mass_matrix;
-
 
   // PROBLEM SPECIFIC MATRICES AND VECTORS
   // Matrix on the right-hand side (M / deltat - theta * A).

@@ -175,7 +175,6 @@ NavierStokes::setup()
     solution.reinit(block_owned_dofs, block_relevant_dofs, MPI_COMM_WORLD);
 
     pcout << "-----------------------------------------------" << std::endl;
-    Re = rho * inlet_velocity.maxVelocity() * 0.1 / nu;
     pcout << "Reynolds number: " << Re << std::endl;
   }
 }
