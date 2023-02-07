@@ -177,6 +177,12 @@ NavierStokes::setup()
     pcout << "-----------------------------------------------" << std::endl;
     pcout << "Reynolds number: " << Re << std::endl;
   }
+
+  // Initialize drag and lift vectors
+  {
+    drag_coefficients.reserve(static_cast<int>(T/deltat + 1.0));
+    lift_coefficients.reserve(static_cast<int>(T/deltat + 1.0));
+  }
 }
 
 void
@@ -520,6 +526,105 @@ NavierStokes::solve_time_step()
 }
 
 void
+NavierStokes::calculate_coefficients()
+{
+  pcout << "===============================================" << std::endl;
+  pcout << "Calculating coefficients" << std::endl;
+
+  const unsigned int n_q_face = quadrature_face->size();
+
+  FEFaceValues<dim> fe_face_values(*fe,
+                                   *quadrature_face,
+                                   update_values | update_gradients | update_normal_vectors |
+                                   update_JxW_values);
+  
+  double f_d = 0.0;
+  double f_l = 0.0; 
+
+  FEValuesExtractors::Vector velocity(0);
+  FEValuesExtractors::Scalar pressure(dim);
+
+  std::vector<double> pressure_loc(n_q_face);
+  std::vector<Tensor<2, dim>> velocity_gradient_loc(n_q_face);
+
+  for (const auto &cell : dof_handler.active_cell_iterators())
+  {
+    if (!cell->is_locally_owned())
+      continue;
+
+    if(cell->at_boundary()){
+      for (unsigned int f = 0; f < cell->n_faces(); ++f)
+      {
+        if (cell->face(f)->at_boundary() &&
+            cell->face(f)->boundary_id() == 2)
+        {
+          fe_face_values.reinit(cell, f);
+          fe_face_values[pressure].get_function_values(solution, pressure_loc);
+          fe_face_values[velocity].get_function_gradients(solution, velocity_gradient_loc);
+
+          for (unsigned int q = 0; q < n_q_face; ++q)
+          {
+            f_d += rho * nu * scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][1]); // fe_face_values.normal_vector(q)[1] * velocity_gradient_loc[q][1][1];
+            f_d -= pressure_loc[q] * fe_face_values.normal_vector(q)[0];
+            
+            f_l -= rho * nu * scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][0]); // fe_face_values.normal_vector(q)[0] * velocity_gradient_loc[q][0][0];
+            f_l += pressure_loc[q] * fe_face_values.normal_vector(q)[1];
+          }
+        }
+      }
+    }
+  }
+
+  if(mpi_rank == 0)
+  { 
+    double temp_f_d, temp_f_l;
+    for(unsigned int i = 1; i < mpi_size; ++i){
+      MPI_Recv(&temp_f_d, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      MPI_Recv(&temp_f_l, 1, MPI_DOUBLE, i, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE); 
+
+      f_d += temp_f_d;
+      f_l += temp_f_l;
+    }
+    drag_coefficients.push_back(multiplicative_const * f_d);
+    lift_coefficients.push_back(multiplicative_const * f_l);
+  }
+  else{
+    MPI_Send(&f_d, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+    MPI_Send(&f_l, 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
+  }
+}
+
+void
+NavierStokes::output_coefficients()
+{
+  const unsigned int mpi_rank = Utilities::MPI::this_mpi_process(MPI_COMM_WORLD);
+
+  pcout << "===============================================" << std::endl;
+  
+  if(mpi_rank == 0)
+  {
+    pcout << "Creating drag_coefficient.csv" << std::endl;
+    std::ofstream drag_coefficient_file("drag_coefficient.csv");
+    drag_coefficient_file << "T,Cd" << std::endl;
+
+    pcout << "Creating lift_coefficient.csv" << std::endl;
+    std::ofstream lift_coefficient_file("lift_coefficient.csv");
+    lift_coefficient_file << "T,Cl" << std::endl;
+
+    unsigned int head = 0;
+    for (double t = 0.0; t <= T; t = t + deltat)
+    {
+      drag_coefficient_file << t << "," << drag_coefficients[head] << std::endl;
+      lift_coefficient_file << t << "," << lift_coefficients[head] << std::endl;
+      head++;
+    }
+  }
+
+  pcout << "Coefficients written to file" << std::endl;
+  pcout << "===============================================" << std::endl;
+}
+
+void
 NavierStokes::solve()
 { 
   pcout << "===============================================" << std::endl;
@@ -537,6 +642,7 @@ NavierStokes::solve()
     solution = solution_owned;
 
     // Output the initial solution.
+    calculate_coefficients();
     output(0, 0.0);
     pcout << "-----------------------------------------------" << std::endl;
   }
@@ -553,8 +659,11 @@ NavierStokes::solve()
 
       assemble_system();
       solve_time_step();
+      calculate_coefficients();
       output(time_step, time);
     }
+  
+  output_coefficients();
 }
 
 void

@@ -415,6 +415,14 @@ protected:
   void
   solve_time_step();
 
+  // Calculate drag/lift coefficient.
+  void
+  calculate_coefficients();
+
+  // Generate drag/lift output file.
+  void
+  output_coefficients();
+
   // Output results.
   void
   output(const unsigned int &time_step, const double &time);
@@ -470,11 +478,11 @@ protected:
   // Drag/Lift coefficient multiplicative constant.
   const double multiplicative_const = 2.0 / (rho * inlet_velocity.maxVelocity() * inlet_velocity.maxVelocity() * cylinder_diameter * cylinder_height); 
 
-  // Drag coefficient at step k.
-  double drag_coefficient; 
-
-  // Lift coefficient at step k.
-  double lift_coefficient;
+  // Vector of all the drag coefficients.
+  std::vector<double> drag_coefficients; 
+  
+  // Vector of all the drag coefficients
+  std::vector<double> lift_coefficients;
 
   // Discretization. ///////////////////////////////////////////////////////////
 
