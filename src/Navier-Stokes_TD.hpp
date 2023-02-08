@@ -90,6 +90,12 @@ public:
       : Function<dim>(dim + 1)
     {}
 
+    double 
+    uMean() const
+    {
+      return 2.0/3.0 * maxVelocity();
+    }
+
     double
     maxVelocity() const
     {
@@ -480,12 +486,12 @@ protected:
   const double T;
 
   // Reynolds number.
-  const double Re = rho * inlet_velocity.maxVelocity() * cylinder_diameter / nu;
+  const double Re = rho * inlet_velocity.uMean() * cylinder_diameter / nu;
 
   // Drag/Lift coefficient. ////////////////////////////////////////////////////
 
   // Drag/Lift coefficient multiplicative constant.
-  const double multiplicative_const = 2.0 / (rho * inlet_velocity.maxVelocity() * inlet_velocity.maxVelocity() * cylinder_diameter * cylinder_height); 
+  const double multiplicative_const = 2.0 / (rho * inlet_velocity.uMean() * inlet_velocity.uMean() * cylinder_diameter * cylinder_height); 
 
   // Vector of all the drag coefficients.
   std::vector<double> drag_coefficients; 

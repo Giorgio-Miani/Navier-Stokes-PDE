@@ -308,17 +308,17 @@ NavierStokes::assemble_system()
 
   const unsigned int dofs_per_cell = fe->dofs_per_cell;
   const unsigned int n_q           = quadrature->size();
-  const unsigned int n_q_face      = quadrature_face->size();
+  // const unsigned int n_q_face      = quadrature_face->size();
 
   FEValues<dim> fe_values(*fe,
                           *quadrature,
                           update_values | update_gradients |
                           update_quadrature_points | update_JxW_values);
   
-  FEFaceValues<dim> fe_face_values(*fe,
-                                   *quadrature_face,
-                                   update_values | update_normal_vectors |
-                                   update_JxW_values);
+  // FEFaceValues<dim> fe_face_values(*fe,
+  //                                  *quadrature_face,
+  //                                  update_values | update_normal_vectors |
+  //                                  update_JxW_values);
 
   FullMatrix<double> cell_matrix(dofs_per_cell, dofs_per_cell);
   Vector<double>     cell_rhs(dofs_per_cell);
@@ -460,10 +460,9 @@ NavierStokes::assemble_system()
   {
     std::map<types::global_dof_index, double>           boundary_values;
     std::map<types::boundary_id, const Function<dim> *> boundary_functions;
+    Functions::ZeroFunction<dim> zero_function(dim + 1);
 
-    // We interpolate first the inlet velocity condition alone, then the wall
-    // condition alone, so that the latter "win" over the former where the two
-    // boundaries touch.
+    // Inflow
     inlet_velocity.set_time(time);
     boundary_functions[0] = &inlet_velocity;
     VectorTools::interpolate_boundary_values(dof_handler,
@@ -471,16 +470,35 @@ NavierStokes::assemble_system()
                                              boundary_values,
                                              ComponentMask(
                                                {true, true, true, false}));
-
     boundary_functions.clear();
-    Functions::ZeroFunction<dim> zero_function(dim + 1);
-    boundary_functions[3] = &zero_function;
-    //boundary_functions[2] = &zero_function;
+
+    // Cylinder
+    boundary_functions[6] = &zero_function;
     VectorTools::interpolate_boundary_values(dof_handler,
                                              boundary_functions,
                                              boundary_values,
                                              ComponentMask(
                                                {true, true, true, false}));
+    boundary_functions.clear();
+
+    // Up/Down
+    boundary_functions[2] = &zero_function;
+    boundary_functions[4] = &zero_function;
+    VectorTools::interpolate_boundary_values(dof_handler,
+                                             boundary_functions,
+                                             boundary_values,
+                                             ComponentMask(
+                                               {false, true, false, false}));
+    boundary_functions.clear();
+
+    // Left/Right
+    boundary_functions[3] = &zero_function;
+    boundary_functions[5] = &zero_function;
+    VectorTools::interpolate_boundary_values(dof_handler,
+                                             boundary_functions,
+                                             boundary_values,
+                                             ComponentMask(
+                                               {false, false, true, false}));
 
     MatrixTools::apply_boundary_values(
       boundary_values, system_matrix, solution, system_rhs, false);
