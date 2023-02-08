@@ -415,31 +415,31 @@ NavierStokes::assemble_system()
             }
         }
 
-      // Boundary integral for Neumann BCs.
-      if (cell->at_boundary())
-        {
-          for (unsigned int f = 0; f < cell->n_faces(); ++f)
-            {
-              if (cell->face(f)->at_boundary() &&
-                  cell->face(f)->boundary_id() == 0)
-                {
-                  fe_face_values.reinit(cell, f);
+      // // Boundary integral for Neumann BCs.
+      // if (cell->at_boundary())
+      //   {
+      //     for (unsigned int f = 0; f < cell->n_faces(); ++f)
+      //       {
+      //         if (cell->face(f)->at_boundary() &&
+      //             cell->face(f)->boundary_id() == 0)
+      //           {
+      //             fe_face_values.reinit(cell, f);
 
-                  for (unsigned int q = 0; q < n_q_face; ++q)
-                    {
-                      for (unsigned int i = 0; i < dofs_per_cell; ++i)
-                        {
-                          cell_rhs(i) +=
-                            -p_out *
-                            scalar_product(fe_face_values.normal_vector(q),
-                                           fe_face_values[velocity].value(i,
-                                                                          q)) *
-                            fe_face_values.JxW(q);
-                        }
-                    }
-                }
-            }
-        }
+      //             for (unsigned int q = 0; q < n_q_face; ++q)
+      //               {
+      //                 for (unsigned int i = 0; i < dofs_per_cell; ++i)
+      //                   {
+      //                     cell_rhs(i) +=
+      //                       -p_out *
+      //                       scalar_product(fe_face_values.normal_vector(q),
+      //                                      fe_face_values[velocity].value(i,
+      //                                                                     q)) *
+      //                       fe_face_values.JxW(q);
+      //                   }
+      //               }
+      //           }
+      //       }
+      //   }
 
       cell->get_dof_indices(dof_indices);
 
@@ -474,7 +474,8 @@ NavierStokes::assemble_system()
 
     boundary_functions.clear();
     Functions::ZeroFunction<dim> zero_function(dim + 1);
-    boundary_functions[2] = &zero_function;
+    boundary_functions[3] = &zero_function;
+    //boundary_functions[2] = &zero_function;
     VectorTools::interpolate_boundary_values(dof_handler,
                                              boundary_functions,
                                              boundary_values,
@@ -556,7 +557,7 @@ NavierStokes::calculate_coefficients()
       for (unsigned int f = 0; f < cell->n_faces(); ++f)
       {
         if (cell->face(f)->at_boundary() &&
-            cell->face(f)->boundary_id() == 2)
+            cell->face(f)->boundary_id() == 3)
         {
           fe_face_values.reinit(cell, f);
           fe_face_values[pressure].get_function_values(solution, pressure_loc);
