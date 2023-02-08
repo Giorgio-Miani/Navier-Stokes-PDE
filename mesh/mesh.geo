@@ -125,8 +125,11 @@ Volume(1) = {1, 2};
 
 Physical Surface(0) = {1};                              // Inflow Plane
 Physical Surface(1) = {2};                              // Outflow Plane
-Physical Surface(2) = {3, 4, 5, 6};                     // Sides
-Physical Surface(3) = {29, 33, 37, 41};                 // Cylinder
+Physical Surface(2) = {3};                              // Bottom side
+Physical Surface(3) = {4};                              // Right side
+Physical Surface(4) = {5};                              // Top side
+Physical Surface(5) = {6};                              // Left side
+Physical Surface(6) = {29, 33, 37, 41};                 // Cylinder
 
 Physical Volume(10) = {1};
 
