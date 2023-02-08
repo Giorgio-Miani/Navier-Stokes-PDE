@@ -280,15 +280,13 @@ public:
     void
     initialize(const TrilinosWrappers::SparseMatrix &F_,
                const TrilinosWrappers::SparseMatrix &pressure_mass_,
-               const TrilinosWrappers::SparseMatrix &B_,
                const TrilinosWrappers::SparseMatrix &Bt_,
                const TrilinosWrappers::SparseMatrix &Ap_,
                const TrilinosWrappers::SparseMatrix &Fp_)
     {
       F                  = &F_;
       pressure_mass      = &pressure_mass_;
-      B                  = &B_;
-      Bt                  = &Bt_;
+      Bt                 = &Bt_;
       Ap                 = &Ap_;
       Fp                 = &Fp_;
 
@@ -324,7 +322,6 @@ public:
                           tmp2,
                           preconditioner_Ap);
 
-
       Bt->vmult(tmp2, tmp1);
 
       tmp2.sadd(1.0, src.block(0));
@@ -338,7 +335,22 @@ public:
 
       // block 1
 
-      dst.block(1).sadd(-1.0, tmp1); // non sicuro
+      tmp1.reinit(src.block(1));
+      tmp2.reinit(src.block(1));
+
+      solver_cg_pressure.solve(*pressure_mass,
+                               tmp1,
+                               src.block(1),
+                               preconditioner_pressure);
+      
+      Fp->vmult(tmp2, tmp1);
+
+      solver_cg_Ap.solve(*Ap,
+                          tmp1,
+                          tmp2,
+                          preconditioner_Ap);
+
+      dst.block(1).sadd(-1.0, tmp1); 
 
     }
 
@@ -355,10 +367,7 @@ public:
     // Preconditioner used for the pressure block.
     TrilinosWrappers::PreconditionILU preconditioner_pressure;
 
-    // B matrix.
-    const TrilinosWrappers::SparseMatrix *B;
-
-        // B matrix.
+    // Bt matrix.
     const TrilinosWrappers::SparseMatrix *Bt;
 
     // Ap matrix.
