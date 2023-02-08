@@ -465,7 +465,7 @@ NavierStokes::assemble_system()
     // condition alone, so that the latter "win" over the former where the two
     // boundaries touch.
     inlet_velocity.set_time(time);
-    boundary_functions[1] = &inlet_velocity;
+    boundary_functions[0] = &inlet_velocity;
     VectorTools::interpolate_boundary_values(dof_handler,
                                              boundary_functions,
                                              boundary_values,
@@ -565,11 +565,11 @@ NavierStokes::calculate_coefficients()
 
           for (unsigned int q = 0; q < n_q_face; ++q)
           {
-            f_d += rho * nu * scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][1]); // fe_face_values.normal_vector(q)[1] * velocity_gradient_loc[q][1][1];
-            f_d -= pressure_loc[q] * fe_face_values.normal_vector(q)[0];
+            f_d += rho * nu * (velocity_gradient_loc[q] * fe_face_values.normal_vector(q))[1] * fe_face_values.JxW(q); // scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][1]);
+            f_d -= pressure_loc[q] * fe_face_values.normal_vector(q)[0] * fe_face_values.JxW(q);
             
-            f_l -= rho * nu * scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][0]); // fe_face_values.normal_vector(q)[0] * velocity_gradient_loc[q][0][0];
-            f_l += pressure_loc[q] * fe_face_values.normal_vector(q)[1];
+            f_l -= rho * nu * (velocity_gradient_loc[q] * fe_face_values.normal_vector(q))[0] * fe_face_values.JxW(q);// scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][0]);
+            f_l += pressure_loc[q] * fe_face_values.normal_vector(q)[1] * fe_face_values.JxW(q);
           }
         }
       }
