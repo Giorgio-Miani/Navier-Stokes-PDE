@@ -488,7 +488,7 @@ NavierStokes::assemble_system()
                                              boundary_functions,
                                              boundary_values,
                                              ComponentMask(
-                                               {false, true, false, false}));
+                                               {false, true, false, false})); 
     boundary_functions.clear();
 
     // Left/Right
@@ -498,7 +498,20 @@ NavierStokes::assemble_system()
                                              boundary_functions,
                                              boundary_values,
                                              ComponentMask(
-                                               {false, false, true, false}));
+                                               {false, false, true, false})); 
+
+    // //Boundary conditions for tunnel test case to test drag and lift coeff
+    // boundary_functions[2] = &zero_function;
+    // boundary_functions[4] = &zero_function;
+    // boundary_functions[3] = &zero_function;
+    // boundary_functions[5] = &zero_function;    
+    // VectorTools::interpolate_boundary_values(dof_handler,
+    //                                          boundary_functions,
+    //                                          boundary_values,
+    //                                          ComponentMask(
+    //                                            {true, true, true, false}));
+
+    boundary_functions.clear();
 
     MatrixTools::apply_boundary_values(
       boundary_values, system_matrix, solution, system_rhs, false);
@@ -566,6 +579,10 @@ NavierStokes::calculate_coefficients()
   std::vector<double> pressure_loc(n_q_face);
   std::vector<Tensor<2, dim>> velocity_gradient_loc(n_q_face);
 
+  Tensor<2, dim> fluid_pressure;
+  Tensor<1, dim> normal_vector;
+  Tensor<1, dim> forces;
+
   for (const auto &cell : dof_handler.active_cell_iterators())
   {
     if (!cell->is_locally_owned())
@@ -575,7 +592,7 @@ NavierStokes::calculate_coefficients()
       for (unsigned int f = 0; f < cell->n_faces(); ++f)
       {
         if (cell->face(f)->at_boundary() &&
-            cell->face(f)->boundary_id() == 3)
+            cell->face(f)->boundary_id() == 6)
         {
           fe_face_values.reinit(cell, f);
           fe_face_values[pressure].get_function_values(solution, pressure_loc);
@@ -583,11 +600,15 @@ NavierStokes::calculate_coefficients()
 
           for (unsigned int q = 0; q < n_q_face; ++q)
           {
-            f_d += rho * nu * (velocity_gradient_loc[q] * fe_face_values.normal_vector(q))[1] * fe_face_values.JxW(q); // scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][1]);
-            f_d -= pressure_loc[q] * fe_face_values.normal_vector(q)[0] * fe_face_values.JxW(q);
-            
-            f_l -= rho * nu * (velocity_gradient_loc[q] * fe_face_values.normal_vector(q))[0] * fe_face_values.JxW(q);// scalar_product(fe_face_values.normal_vector(q), velocity_gradient_loc[q][0]);
-            f_l += pressure_loc[q] * fe_face_values.normal_vector(q)[1] * fe_face_values.JxW(q);
+
+            normal_vector = -fe_face_values.normal_vector(q);
+
+            fluid_pressure[0][0] = pressure_loc[q];
+            fluid_pressure[1][1] = pressure_loc[q];
+
+            forces = (rho * nu * velocity_gradient_loc[q] - fluid_pressure) * normal_vector * fe_face_values.JxW(q);
+            f_d += forces[0];
+            f_l += forces[1];
           }
         }
       }

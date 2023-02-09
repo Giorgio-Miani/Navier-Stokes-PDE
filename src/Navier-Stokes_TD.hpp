@@ -93,7 +93,7 @@ public:
     double 
     uMean() const
     {
-      return 2.0/3.0 * maxVelocity();
+      return 4.0/9.0 * Um;
     }
 
     double
@@ -109,7 +109,10 @@ public:
       // values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
       // Case 2.
       values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
-      
+      // Case drag and lift test
+      //values[0] =  4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));      
+
+
       for (unsigned int i = 1; i < dim + 1; ++i)
         values[i] = 0.0;
     }
@@ -122,6 +125,8 @@ public:
           // return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
           // Case 2.
           return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
+          // Case drag and lift test
+          //return 4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));          
       }
       else{
         return 0.0;
@@ -130,9 +135,11 @@ public:
 
   protected:
     // Case 1.
-    // double Um = 0.45;
+     double Um = 0.45;
     // Case 2.
-    double Um = 2.25;
+    // double Um = 2.25;
+    //Drag and lift coeff testing.
+    //double Um = 0.3;
 
     double H = 0.41;
   };
@@ -462,10 +469,10 @@ protected:
   const double cylinder_height = 0.41;
 
   // Kinematic viscosity [m2/s].
-  const double nu = 0.5;
+  const double nu = 0.001;
 
   // Fluid density.
-  const double rho = 0.3;
+  const double rho = 1.0;
 
   // Outlet pressure [Pa].
   const double p_out = 0.0;
