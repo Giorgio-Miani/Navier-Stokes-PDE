@@ -537,12 +537,12 @@ NavierStokes::solve_time_step()
       }
   system_matrix.block(1,0).mmult(inverse_diagonal_mass_matrix.block(0,0), system_matrix.block(0,1), diagonal);
 
-  // PreconditionBlockPCD preconditioner;
-  // preconditioner.initialize(system_matrix.block(0,0), pressure_mass.block(1,1), system_matrix.block(1, 0), system_matrix.block(0, 1),inverse_diagonal_mass_matrix.block(0,0), Fp_matrix.block(1,1));  
+  PreconditionBlockPCD preconditioner;
+  preconditioner.initialize(system_matrix.block(0,0), pressure_mass.block(1,1), system_matrix.block(0, 1), inverse_diagonal_mass_matrix.block(0,0), Fp_matrix.block(1,1));  
 
-  PreconditionBlockDiagonal preconditioner;
-  preconditioner.initialize(system_matrix.block(0, 0),
-                            pressure_mass.block(1, 1));
+  // PreconditionBlockDiagonal preconditioner;
+  // preconditioner.initialize(system_matrix.block(0, 0),
+  //                           pressure_mass.block(1, 1));
 
   // PreconditionBlockTriangular preconditioner;
   // preconditioner.initialize(system_matrix.block(0, 0),
