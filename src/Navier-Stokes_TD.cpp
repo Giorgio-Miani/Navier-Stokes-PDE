@@ -354,7 +354,6 @@ NavierStokes::assemble_system()
 
       for (unsigned int q = 0; q < n_q; ++q)
         {
-          double present_velocity_divergence = trace(velocity_gradient_loc[q]);
 
           for (unsigned int i = 0; i < dofs_per_cell; ++i)
             {
@@ -388,7 +387,7 @@ NavierStokes::assemble_system()
                   // cell_Fp_matrix(i, j) += 0.5 * present_velocity_divergence * fe_values[pressure].value(j, q) * fe_values[pressure].value(i, q) *
                   //                      fe_values.JxW(q);     
 
-                  cell_matrix(i, j) += rho * velocity_loc[q] * fe_values[pressure].gradient(j, q) * fe_values[pressure].value(i, q) *
+                  cell_Fp_matrix(i, j) += rho * velocity_loc[q] * fe_values[pressure].gradient(j, q) * fe_values[pressure].value(i, q) *
                         fe_values.JxW(q);                                  
                 }
 
