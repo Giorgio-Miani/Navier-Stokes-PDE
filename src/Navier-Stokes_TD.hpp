@@ -135,9 +135,9 @@ public:
 
   protected:
     // Case 1.
-     double Um = 0.45;
+    // double Um = 0.45;
     // Case 2.
-    // double Um = 2.25;
+    double Um = 2.25;
     //Drag and lift coeff testing.
     //double Um = 0.3;
 
@@ -469,10 +469,10 @@ protected:
   const double cylinder_height = 0.41;
 
   // Kinematic viscosity [m2/s].
-  const double nu = 0.001;
+  const double nu = 0.5;
 
   // Fluid density.
-  const double rho = 1.0;
+  const double rho = 0.3;
 
   // Outlet pressure [Pa].
   const double p_out = 0.0;
