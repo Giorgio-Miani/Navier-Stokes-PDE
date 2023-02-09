@@ -11,7 +11,7 @@ NavierStokes::setup()
     GridIn<dim> grid_in;
 
     grid_in.attach_triangulation(mesh_serial);
-    const std::string mesh_file_name = "../mesh/mesh.msh";
+    const std::string mesh_file_name = "../mesh/mesh-0.1.msh";
     std::ifstream grid_in_file(mesh_file_name);
     grid_in.read_msh(grid_in_file);
 
@@ -500,7 +500,7 @@ NavierStokes::assemble_system()
                                              ComponentMask(
                                                {false, false, true, false})); 
 
-    // //Boundary conditions for tunnel test case to test drag and lift coeff
+    // Boundary conditions on all walls for tunnel test case to test drag and lift coeff
     // boundary_functions[2] = &zero_function;
     // boundary_functions[4] = &zero_function;
     // boundary_functions[3] = &zero_function;
