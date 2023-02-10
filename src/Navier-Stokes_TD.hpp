@@ -557,10 +557,6 @@ protected:
   // convenience, but in practice we only look at the pressure-pressure block.
   TrilinosWrappers::BlockSparseMatrix pressure_mass;
 
-  // Preconditioner
-  TrilinosWrappers::BlockSparseMatrix Fp_matrix;
-  TrilinosWrappers::BlockSparseMatrix inverse_diagonal_mass_matrix;
-
   // PROBLEM SPECIFIC MATRICES AND VECTORS
   // Matrix on the right-hand side (M / deltat - theta * A).
   TrilinosWrappers::BlockSparseMatrix lhs_matrix;
@@ -576,6 +572,11 @@ protected:
 
   // System solution (including ghost elements).
   TrilinosWrappers::MPI::BlockVector solution;
+
+  // PCD Preconditioner
+  TrilinosWrappers::BlockSparseMatrix Fp_matrix;
+  TrilinosWrappers::BlockSparseMatrix intermediate_fp_matrix;
+  TrilinosWrappers::BlockSparseMatrix inverse_diagonal_mass_matrix;
 };
 
 #endif
