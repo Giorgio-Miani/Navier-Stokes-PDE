@@ -689,11 +689,13 @@ NavierStokes::solve()
   }
 
   unsigned int time_step = 0;
+  double intpart, fractpart;
 
   while (time < T)
     {
       time += deltat;
       ++time_step;
+      fractpart = std::modf(time, &intpart);
 
       pcout << "n = " << std::setw(3) << time_step << ", t = " << std::setw(5)
             << time << ":\n" << std::flush;
@@ -708,7 +710,7 @@ NavierStokes::solve()
       calculate_coefficients();
       timer.leave_subsection();
       timer.enter_subsection ("Output");
-      output(time_step, time);
+      if(fractpart == 0.0 || fractpart == 0.5) output(time_step, time);
       timer.leave_subsection();
     }
   timer.enter_subsection ("Output coefficients");

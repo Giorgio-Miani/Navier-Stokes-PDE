@@ -472,10 +472,10 @@ protected:
   const double cylinder_height = 0.41;
 
   // Kinematic viscosity [m2/s].
-  const double nu = 0.5;
+  const double nu = 0.05;
 
   // Fluid density.
-  const double rho = 0.3;
+  const double rho = 1.0;
 
   // Outlet pressure [Pa].
   const double p_out = 0.0;
