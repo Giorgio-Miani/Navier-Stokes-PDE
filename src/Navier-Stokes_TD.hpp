@@ -317,8 +317,9 @@ public:
 
       // block 0
 
-      tmp1.reinit(src.block(0));
-      tmp2.reinit(src.block(0));
+      tmp1.reinit(src.block(1));
+      tmp2.reinit(src.block(1));
+      tmp3.reinit(src.block(0));
 
       SolverControl solver_control_pressure(1000, 1e-2 * src.block(0).l2_norm());
       SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(solver_control_pressure);
@@ -336,15 +337,15 @@ public:
                           tmp2,
                           preconditioner_Ap);
 
-      Bt->vmult(tmp2, tmp1);
+      Bt->vmult(tmp3, tmp1);
 
-      tmp2.sadd(1.0, src.block(0));
+      tmp3.sadd(1.0, src.block(0));
 
       SolverControl solver_control_F(1000, 1e-2 * src.block(0).l2_norm());
       SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_F(solver_control_F);
       solver_cg_F.solve (*F,
                           dst.block(0),
-                          tmp2,
+                          tmp3,
                           preconditioner_F);
 
       // block 1
@@ -396,6 +397,7 @@ public:
     // Temporary vectors.
     mutable TrilinosWrappers::MPI::Vector tmp1;
     mutable TrilinosWrappers::MPI::Vector tmp2;
+    mutable TrilinosWrappers::MPI::Vector tmp3;
   };
 
   // Constructor.
