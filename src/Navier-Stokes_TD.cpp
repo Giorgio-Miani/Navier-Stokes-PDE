@@ -668,10 +668,13 @@ void
 NavierStokes::solve()
 { 
   pcout << "===============================================" << std::endl;
-
+  TimerOutput timer (pcout, TimerOutput::never, TimerOutput::wall_times);
+  
   time = 0.0;
-  assemble_matrices();
 
+  timer.enter_subsection ("Matrix assembly");
+  assemble_matrices();
+  timer.leave_subsection();
 
   // Apply the initial condition.
   {
@@ -681,9 +684,12 @@ NavierStokes::solve()
     VectorTools::interpolate(dof_handler, u_0, solution_owned);
     solution = solution_owned;
 
-    // Output the initial solution.
+    timer.enter_subsection ("Coefficients calculation");
     calculate_coefficients();
+    timer.leave_subsection();
+    timer.enter_subsection ("Output");
     output(0, 0.0);
+    timer.leave_subsection();
     pcout << "-----------------------------------------------" << std::endl;
   }
 
@@ -697,13 +703,24 @@ NavierStokes::solve()
       pcout << "n = " << std::setw(3) << time_step << ", t = " << std::setw(5)
             << time << ":\n" << std::flush;
 
+      timer.enter_subsection ("System assembly");
       assemble_system();
+      timer.leave_subsection();
+      timer.enter_subsection ("System solving");
       solve_time_step();
+      timer.leave_subsection();
+      timer.enter_subsection ("Coefficients calculation");
       calculate_coefficients();
+      timer.leave_subsection();
+      timer.enter_subsection ("Output");
       output(time_step, time);
+      timer.leave_subsection();
     }
-  
+  timer.enter_subsection ("Output coefficients");
   output_coefficients();
+  timer.leave_subsection();
+
+  timer.print_wall_time_statistics(MPI_COMM_WORLD);
 }
 
 void

@@ -1,15 +1,10 @@
-#include <deal.II/base/timer.h>
 #include "Navier-Stokes_TD.hpp"
 
 // Main function.
 int
 main(int argc, char *argv[])
 {
-  Utilities::MPI::MPI_InitFinalize mpi_init(argc, argv);
-  const unsigned int mpi_rank = Utilities::MPI::this_mpi_process(MPI_COMM_WORLD);
-
-  ConditionalOStream pcout(std::cout, mpi_rank == 0);
-  TimerOutput timer (pcout, TimerOutput::never, TimerOutput::wall_times);
+  Utilities::MPI::MPI_InitFinalize mpi_init(argc, argv);  
 
   const unsigned int degree_velocity = 2;
   const unsigned int degree_pressure = 1;
@@ -20,15 +15,9 @@ main(int argc, char *argv[])
   for (const auto &deltat : deltat_vector)
   {   
     NavierStokes problem(degree_velocity, degree_pressure, T, deltat, theta);
-    timer.enter_subsection ("Setup");
     problem.setup();
-    timer.leave_subsection();
-
-    timer.enter_subsection ("Solve");
     problem.solve();
-    timer.leave_subsection();
   }
 
-  timer.print_wall_time_statistics(MPI_COMM_WORLD);
   return 0;
 }

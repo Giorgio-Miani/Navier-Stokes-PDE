@@ -1,6 +1,7 @@
 #ifndef NAVIER_STOKES_HPP
 #define NAVIER_STOKES_HPP
 
+#include <deal.II/base/timer.h>
 #include <deal.II/base/conditional_ostream.h>
 #include <deal.II/base/quadrature_lib.h>
 
