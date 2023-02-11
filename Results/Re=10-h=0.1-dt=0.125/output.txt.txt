@@ -1,0 +1,1018 @@
+Initializing the mesh
+  Number of elements = 3044
+-----------------------------------------------
+Initializing the finite element space
+  Velocity degree:           = 2
+  Pressure degree:           = 1
+  DoFs per cell              = 34
+  Quadrature points per cell = 10
+  Quadrature points per face = 7
+-----------------------------------------------
+Initializing the DoF handler
+  Number of DoFs:
+    velocity = 16734
+    pressure = 899
+    total    = 17633
+-----------------------------------------------
+Initializing the linear system
+  Initializing the sparsity pattern
+  Initializing the matrices
+  Initializing the system right-hand side
+  Initializing the solution vector
+-----------------------------------------------
+Reynolds number: 10
+===============================================
+===============================================
+Assembling the recurrent matrices
+Applying the initial condition
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0000
+===============================================
+-----------------------------------------------
+n =   1, t = 0.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  924 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0001
+===============================================
+n =   2, t =  0.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  924 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0002
+===============================================
+n =   3, t = 0.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  742 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0003
+===============================================
+n =   4, t =   0.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  634 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0004
+===============================================
+n =   5, t = 0.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  612 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0005
+===============================================
+n =   6, t =  0.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+terminate called after throwing an instance of 'dealii::SolverControl::NoConvergence'
+terminate called after throwing an instance of 'dealii::SolverControl::NoConvergence'
+terminate called after throwing an instance of 'dealii::SolverControl::NoConvergence'
+  what():
+--------------------------------------------------------
+An error occurred in line <1074> of file </u/sw/toolchains/gcc-glibc/11.2.0/pkgs/dealii/9.3.1/include/deal.II/lac/solver_gmres.h> in function
+    void dealii::SolverGMRES<VectorType>::solve(const MatrixType&, VectorType&, const VectorType&, const PreconditionerType&) [with MatrixType = dealii::TrilinosWrappers::BlockSparseMatrix; PreconditionerType = NavierStokes::PreconditionBlockDiagonal; VectorType = dealii::TrilinosWrappers::MPI::BlockVector]
+The violated condition was:
+    iteration_state == SolverControl::success
+Additional information:
+    Iterative method reported convergence failure in step 1000. The
+    residual in the last step was 2.70211e-08.
+
+    This error message can indicate that you have simply not allowed a
+    sufficiently large number of iterations for your iterative solver to
+    converge. This often happens when you increase the size of your
+    problem. In such cases, the last residual will likely still be very
+    small, and you can make the error go away by increasing the allowed
+    number of iterations when setting up the SolverControl object that
+    determines the maximal number of iterations you allow.
+
+    The other situation where this error may occur is when your matrix is
+    not invertible (e.g., your matrix has a null-space), or if you try to
+    apply the wrong solver to a matrix (e.g., using CG for a matrix that
+    is not symmetric or not positive definite). In these cases, the
+    residual in the last iteration is likely going to be large.
+--------------------------------------------------------
+
+  what():
+--------------------------------------------------------
+An error occurred in line <1074> of file </u/sw/toolchains/gcc-glibc/11.2.0/pkgs/dealii/9.3.1/include/deal.II/lac/solver_gmres.h> in function
+    void dealii::SolverGMRES<VectorType>::solve(const MatrixType&, VectorType&, const VectorType&, const PreconditionerType&) [with MatrixType = dealii::TrilinosWrappers::BlockSparseMatrix; PreconditionerType = NavierStokes::PreconditionBlockDiagonal; VectorType = dealii::TrilinosWrappers::MPI::BlockVector]
+The violated condition was:
+    iteration_state == SolverControl::success
+Additional information:
+    Iterative method reported convergence failure in step 1000. The
+    residual in the last step was 2.70211e-08.
+
+    This error message can indicate that you have simply not allowed a
+    sufficiently large number of iterations for your iterative solver to
+    converge. This often happens when you increase the size of your
+    problem. In such cases, the last residual will likely still be very
+    small, and you can make the error go away by increasing the allowed
+    number of iterations when setting up the SolverControl object that
+    determines the maximal number of iterations you allow.
+
+    The other situation where this error may occur is when your matrix is
+    not invertible (e.g., your matrix has a null-space), or if you try to
+    apply the wrong solver to a matrix (e.g., using CG for a matrix that
+    is not symmetric or not positive definite). In these cases, the
+    residual in the last iteration is likely going to be large.
+--------------------------------------------------------
+
+  what():
+--------------------------------------------------------
+An error occurred in line <1074> of file </u/sw/toolchains/gcc-glibc/11.2.0/pkgs/dealii/9.3.1/include/deal.II/lac/solver_gmres.h> in function
+    void dealii::SolverGMRES<VectorType>::solve(const MatrixType&, VectorType&, const VectorType&, const PreconditionerType&) [with MatrixType = dealii::TrilinosWrappers::BlockSparseMatrix; PreconditionerType = NavierStokes::PreconditionBlockDiagonal; VectorType = dealii::TrilinosWrappers::MPI::BlockVector]
+The violated condition was:
+    iteration_state == SolverControl::success
+Additional information:
+    Iterative method reported convergence failure in step 1000. The
+    residual in the last step was 2.70211e-08.
+
+    This error message can indicate that you have simply not allowed a
+    sufficiently large number of iterations for your iterative solver to
+    converge. This often happens when you increase the size of your
+    problem. In such cases, the last residual will likely still be very
+    small, and you can make the error go away by increasing the allowed
+    number of iterations when setting up the SolverControl object that
+    determines the maximal number of iterations you allow.
+
+    The other situation where this error may occur is when your matrix is
+    not invertible (e.g., your matrix has a null-space), or if you try to
+    apply the wrong solver to a matrix (e.g., using CG for a matrix that
+    is not symmetric or not positive definite). In these cases, the
+    residual in the last iteration is likely going to be large.
+--------------------------------------------------------
+
+[770ed213c3c7:26484] *** Process received signal ***
+[770ed213c3c7:26485] *** Process received signal ***
+[770ed213c3c7:26485] Signal: Aborted (6)
+[770ed213c3c7:26485] Signal code: User function (kill, sigsend, abort, etc.) (0)
+[770ed213c3c7:26486] *** Process received signal ***
+[770ed213c3c7:26486] Signal: Aborted (6)
+[770ed213c3c7:26486] Signal code: User function (kill, sigsend, abort, etc.) (0)
+[770ed213c3c7:26484] Signal: Aborted (6)
+[770ed213c3c7:26484] Associated errno: Unknown error 32664 (32664)
+[770ed213c3c7:26484] Signal code:  (222982160)
+[770ed213c3c7:26486] [ 0] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(+0x37df0)[0x7f4d9d371df0]
+[770ed213c3c7:26486] [ 1] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(gsignal+0xfd)[0x7f4d9d371d7d]
+[770ed213c3c7:26486] [ 2] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(abort+0x102)[0x7f4d9d35c526]
+[770ed213c3c7:26486] [ 3] [770ed213c3c7:26485] [ 0] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(+0x37df0)[0x7f544d21fdf0]
+[770ed213c3c7:26485] [ 1] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(gsignal+0xfd)[0x7f544d21fd7d]
+[770ed213c3c7:26485] [ 2] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(abort+0x102)[0x7f544d20a526]
+[770ed213c3c7:26485] [ 3] [770ed213c3c7:26484] [ 0] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(+0x37df0)[0x7f980d1b0df0]
+[770ed213c3c7:26484] [ 1] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(gsignal+0xfd)[0x7f980d1b0d7d]
+[770ed213c3c7:26484] [ 2] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(abort+0x102)[0x7f980d19b526]
+[770ed213c3c7:26484] [ 3] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xa588a)[0x7f544d5aa88a]
+[770ed213c3c7:26485] [ 4] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xa588a)[0x7f4d9d6fc88a]
+[770ed213c3c7:26486] [ 4] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xa588a)[0x7f980d53b88a]
+[770ed213c3c7:26484] [ 4] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb0ffa)[0x7f4d9d707ffa]
+[770ed213c3c7:26486] [ 5] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb0ffa)[0x7f544d5b5ffa]
+[770ed213c3c7:26485] [ 5] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb0ffa)[0x7f980d546ffa]
+[770ed213c3c7:26484] [ 5] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb1065)[0x7f544d5b6065]
+[770ed213c3c7:26485] [ 6] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb1065)[0x7f4d9d708065]
+[770ed213c3c7:26486] [ 6] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb1065)[0x7f980d547065]
+[770ed213c3c7:26484] [ 6] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb12f8)[0x7f4d9d7082f8]
+[770ed213c3c7:26486] [ 7] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb12f8)[0x7f544d5b62f8]
+[770ed213c3c7:26485] [ 7] ./main(_ZN6dealii11SolverGMRESINS_16TrilinosWrappers3MPI11BlockVectorEE5solveINS1_17BlockSparseMatrixEN12NavierStokes25PreconditionBlockDiagonalEEEvRKT_RS3_RKS3_RKT0_+0x2a16)[0x498df6]
+[770ed213c3c7:26486] [ 8] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libstdc++.so.6(+0xb12f8)[0x7f980d5472f8]
+[770ed213c3c7:26484] [ 7] ./main(_ZN12NavierStokes15solve_time_stepEv+0x30a)[0x465bca]
+[770ed213c3c7:26486] [ 9] ./main(_ZN12NavierStokes5solveEv+0x2b7)[0x465fe7]
+[770ed213c3c7:26486] [10] ./main(main+0xce)[0x44fdee]
+[770ed213c3c7:26486] [11] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(__libc_start_main+0xcd)[0x7f4d9d35d7dd]
+[770ed213c3c7:26486] [12] ./main(_start+0x2a)[0x44feca]
+[770ed213c3c7:26486] *** End of error message ***
+./main(_ZN6dealii11SolverGMRESINS_16TrilinosWrappers3MPI11BlockVectorEE5solveINS1_17BlockSparseMatrixEN12NavierStokes25PreconditionBlockDiagonalEEEvRKT_RS3_RKS3_RKT0_+0x2a16)[0x498df6]
+[770ed213c3c7:26485] [ 8] ./main(_ZN12NavierStokes15solve_time_stepEv+0x30a)[0x465bca]
+[770ed213c3c7:26485] [ 9] ./main(_ZN12NavierStokes5solveEv+0x2b7)[0x465fe7]
+[770ed213c3c7:26485] [10] ./main(main+0xce)[0x44fdee]
+[770ed213c3c7:26485] [11] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(__libc_start_main+0xcd)[0x7f544d20b7dd]
+[770ed213c3c7:26485] [12] ./main(_ZN6dealii11SolverGMRESINS_16TrilinosWrappers3MPI11BlockVectorEE5solveINS1_17BlockSparseMatrixEN12NavierStokes25PreconditionBlockDiagonalEEEvRKT_RS3_RKS3_RKT0_+0x2a16)[0x498df6]
+[770ed213c3c7:26484] [ 8] ./main(_ZN12NavierStokes15solve_time_stepEv+0x30a)[0x465bca]
+[770ed213c3c7:26484] [ 9] ./main(_ZN12NavierStokes5solveEv+0x2b7)[0x465fe7]
+[770ed213c3c7:26484] [10] ./main(main+0xce)[0x44fdee]
+[770ed213c3c7:26484] [11] /u/sw/toolchains/gcc-glibc/11.2.0/prefix/lib/libc.so.6(__libc_start_main+0xcd)[0x7f980d19c7dd]
+[770ed213c3c7:26484] [12] ./main(_start+0x2a)[0x44feca]
+[770ed213c3c7:26485] *** End of error message ***
+./main(_start+0x2a)[0x44feca]
+[770ed213c3c7:26484] *** End of error message ***
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+terminate called after throwing an instance of 'dealii::SolverControl::NoConvergence'
+  what():
+--------------------------------------------------------
+An error occurred in line <1074> of file </u/sw/toolchains/gcc-glibc/11.2.0/pkgs/dealii/9.3.1/include/deal.II/lac/solver_gmres.h> in function
+    void dealii::SolverGMRES<VectorType>::solve(const MatrixType&, VectorType&, const VectorType&, const PreconditionerType&) [with MatrixType = dealii::TrilinosWrappers::BlockSparseMatrix; PreconditionerType = NavierStokes::PreconditionBlockDiagonal; VectorType = dealii::TrilinosWrappers::MPI::BlockVector]
+The violated condition was:
+    iteration_state == SolverControl::success
+Additional information:
+    Iterative method reported convergence failure in step 1000. The
+    residual in the last step was 2.70211e-08.
+
+    This error message can indicate that you have simply not allowed a
+    sufficiently large number of iterations for your iterative solver to
+    converge. This often happens when you increase the size of your
+    problem. In such cases, the last residual will likely still be very
+    small, and you can make the error go away by increasing the allowed
+    number of iterations when setting up the SolverControl object that
+    determines the maximal number of iterations you allow.
+
+    The other situation where this error may occur is when your matrix is
+    not invertible (e.g., your matrix has a null-space), or if you try to
+    apply the wrong solver to a matrix (e.g., using CG for a matrix that
+    is not symmetric or not positive definite). In these cases, the
+    residual in the last iteration is likely going to be large.
+--------------------------------------------------------
+
+[770ed213c3c7:26487] *** Process received signal ***
+--------------------------------------------------------------------------
+mpiexec noticed that process rank 1 with PID 0 on node 770ed213c3c7 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+jellyfish@770ed213c3c7 build $ make
+Consolidate compiler generated dependencies of target main
+[ 33%] Building CXX object CMakeFiles/main.dir/src/Navier-Stokes_TD.cpp.o
+[ 66%] Linking CXX executable main
+[100%] Built target main
+jellyfish@770ed213c3c7 build $ mpiexec -n 4 ./main
+Initializing the mesh
+  Number of elements = 3044
+-----------------------------------------------
+Initializing the finite element space
+  Velocity degree:           = 2
+  Pressure degree:           = 1
+  DoFs per cell              = 34
+  Quadrature points per cell = 10
+  Quadrature points per face = 7
+-----------------------------------------------
+Initializing the DoF handler
+  Number of DoFs:
+    velocity = 16734
+    pressure = 899
+    total    = 17633
+-----------------------------------------------
+Initializing the linear system
+  Initializing the sparsity pattern
+  Initializing the matrices
+  Initializing the system right-hand side
+  Initializing the solution vector
+-----------------------------------------------
+Reynolds number: 10
+===============================================
+===============================================
+Assembling the recurrent matrices
+Applying the initial condition
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0000
+===============================================
+-----------------------------------------------
+n =   1, t = 0.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  924 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0001
+===============================================
+n =   2, t =  0.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  924 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0002
+===============================================
+n =   3, t = 0.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  742 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0003
+===============================================
+n =   4, t =   0.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  634 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0004
+===============================================
+n =   5, t = 0.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  612 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0005
+===============================================
+n =   6, t =  0.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1036 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0006
+===============================================
+n =   7, t = 0.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  634 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0007
+===============================================
+n =   8, t =     1:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  819 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0008
+===============================================
+n =   9, t = 1.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  830 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0009
+===============================================
+n =  10, t =  1.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  790 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0010
+===============================================
+n =  11, t = 1.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1036 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0011
+===============================================
+n =  12, t =   1.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  952 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0012
+===============================================
+n =  13, t = 1.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1006 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0013
+===============================================
+n =  14, t =  1.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  833 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0014
+===============================================
+n =  15, t = 1.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  870 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0015
+===============================================
+n =  16, t =     2:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  954 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0016
+===============================================
+n =  17, t = 2.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1006 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0017
+===============================================
+n =  18, t =  2.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1229 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0018
+===============================================
+n =  19, t = 2.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1078 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0019
+===============================================
+n =  20, t =   2.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1192 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0020
+===============================================
+n =  21, t = 2.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1079 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0021
+===============================================
+n =  22, t =  2.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1115 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0022
+===============================================
+n =  23, t = 2.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1356 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0023
+===============================================
+n =  24, t =     3:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1287 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0024
+===============================================
+n =  25, t = 3.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1148 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0025
+===============================================
+n =  26, t =  3.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1312 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0026
+===============================================
+n =  27, t = 3.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1172 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0027
+===============================================
+n =  28, t =   3.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1228 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0028
+===============================================
+n =  29, t = 3.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1120 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0029
+===============================================
+n =  30, t =  3.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1284 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0030
+===============================================
+n =  31, t = 3.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1574 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0031
+===============================================
+n =  32, t =     4:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1187 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0032
+===============================================
+n =  33, t = 4.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1428 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0033
+===============================================
+n =  34, t =  4.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1200 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0034
+===============================================
+n =  35, t = 4.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1417 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0035
+===============================================
+n =  36, t =   4.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1194 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0036
+===============================================
+n =  37, t = 4.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1340 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0037
+===============================================
+n =  38, t =  4.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1483 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0038
+===============================================
+n =  39, t = 4.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1226 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0039
+===============================================
+n =  40, t =     5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1189 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0040
+===============================================
+n =  41, t = 5.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1124 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0041
+===============================================
+n =  42, t =  5.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1176 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0042
+===============================================
+n =  43, t = 5.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1242 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0043
+===============================================
+n =  44, t =   5.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1028 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0044
+===============================================
+n =  45, t = 5.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1158 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0045
+===============================================
+n =  46, t =  5.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1147 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0046
+===============================================
+n =  47, t = 5.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1078 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0047
+===============================================
+n =  48, t =     6:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  955 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0048
+===============================================
+n =  49, t = 6.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1122 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0049
+===============================================
+n =  50, t =  6.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  954 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0050
+===============================================
+n =  51, t = 6.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  770 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0051
+===============================================
+n =  52, t =   6.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  920 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0052
+===============================================
+n =  53, t = 6.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  924 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0053
+===============================================
+n =  54, t =  6.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  998 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0054
+===============================================
+n =  55, t = 6.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  820 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0055
+===============================================
+n =  56, t =     7:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1220 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0056
+===============================================
+n =  57, t = 7.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1152 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0057
+===============================================
+n =  58, t =  7.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1126 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0058
+===============================================
+n =  59, t = 7.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  758 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0059
+===============================================
+n =  60, t =   7.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  1008 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0060
+===============================================
+n =  61, t = 7.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  856 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0061
+===============================================
+n =  62, t =  7.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  868 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0062
+===============================================
+n =  63, t = 7.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  674 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0063
+===============================================
+n =  64, t =     8:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  865 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0064
+===============================================
+===============================================
+Creating drag_coefficient.csv
+Creating lift_coefficient.csv
+Coefficients written to file
+===============================================
+
++--------------------------------------+------------------+------------+------------------+
+| Total wallclock time elapsed         |      1720s     2 |      1720s |      1720s     0 |
+|                                      |                  |                               |
+| Section                  | no. calls |   min time  rank |   avg time |   max time  rank |
++--------------------------------------+------------------+------------+------------------+
+| Coefficients calculation |        65 |    0.1306s     1 |     0.164s |     0.193s     0 |
+| Matrix assembly          |         1 |    0.7188s     0 |    0.7188s |    0.7189s     2 |
+| Output                   |        65 |     2.537s     2 |     2.608s |     2.709s     0 |
+| Output coefficients      |         1 |   2.3e-06s     1 |  0.006923s |   0.02768s     0 |
+| System assembly          |        64 |     24.17s     0 |      24.3s |     24.36s     2 |
+| System solving           |        64 |      1692s     3 |      1692s |      1692s     0 |
++--------------------------------------+------------------+------------+------------------+
