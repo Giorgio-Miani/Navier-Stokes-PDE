@@ -749,7 +749,7 @@ NavierStokes::output(const unsigned int &time_step, const double &time)
 
   data_out.build_patches();
 
-  output_file_name = "output-" + std::to_string(time_step);
+  std::string output_file_name = "output-" + std::to_string(time_step);
 
   DataOutBase::DataOutFilter data_filter(
     DataOutBase::DataOutFilterFlags(/*filter_duplicate_vertices = */ true,
