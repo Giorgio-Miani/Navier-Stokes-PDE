@@ -183,7 +183,7 @@ public:
     vmult(TrilinosWrappers::MPI::BlockVector &      dst,
           const TrilinosWrappers::MPI::BlockVector &src) const
     {
-      SolverControl                           solver_control_velocity(1000,
+      SolverControl                           solver_control_velocity(10000,
                                             1e-2 * src.block(0).l2_norm());
       SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
@@ -192,7 +192,7 @@ public:
                                src.block(0),
                                preconditioner_velocity);
 
-      SolverControl                           solver_control_pressure(1000,
+      SolverControl                           solver_control_pressure(10000,
                                             1e-2 * src.block(1).l2_norm());
       SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
@@ -240,9 +240,9 @@ public:
     vmult(TrilinosWrappers::MPI::BlockVector &      dst,
           const TrilinosWrappers::MPI::BlockVector &src) const
     {
-      SolverControl                           solver_control_velocity(1000,
+      SolverControl                           solver_control_velocity(10000,
                                             1e-2 * src.block(0).l2_norm());
-      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
+      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_velocity(
         solver_control_velocity);
       solver_cg_velocity.solve(*velocity_stiffness,
                                dst.block(0),
@@ -253,9 +253,9 @@ public:
       B->vmult(tmp, dst.block(0));
       tmp.sadd(-1.0, src.block(1));
 
-      SolverControl                           solver_control_pressure(1000,
+      SolverControl                           solver_control_pressure(10000,
                                             1e-2 * src.block(1).l2_norm());
-      SolverGMRES<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
+      SolverCG<TrilinosWrappers::MPI::Vector> solver_cg_pressure(
         solver_control_pressure);
       solver_cg_pressure.solve(*pressure_mass,
                                dst.block(1),
@@ -472,7 +472,7 @@ protected:
   const double cylinder_height = 0.41;
 
   // Kinematic viscosity [m2/s].
-  const double nu = 0.05;
+  const double nu = 0.02;
 
   // Fluid density.
   const double rho = 1.0;

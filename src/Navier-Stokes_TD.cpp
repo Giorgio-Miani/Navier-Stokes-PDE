@@ -11,7 +11,7 @@ NavierStokes::setup()
     GridIn<dim> grid_in;
 
     grid_in.attach_triangulation(mesh_serial);
-    const std::string mesh_file_name = "../mesh/mesh-0.1.msh";
+    const std::string mesh_file_name = "../mesh/mesh-0.05.msh";
     std::ifstream grid_in_file(mesh_file_name);
     grid_in.read_msh(grid_in_file);
 
