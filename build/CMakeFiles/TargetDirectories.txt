@@ -1,3 +1,0 @@
-/home/jellyfish/shared-folder/Navier-Stokes-PDE/build/CMakeFiles/rebuild_cache.dir
-/home/jellyfish/shared-folder/Navier-Stokes-PDE/build/CMakeFiles/edit_cache.dir
-/home/jellyfish/shared-folder/Navier-Stokes-PDE/build/CMakeFiles/main.dir
