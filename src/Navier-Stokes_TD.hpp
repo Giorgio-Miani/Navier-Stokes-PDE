@@ -113,6 +113,13 @@ public:
       // Case drag and lift test
       //values[0] =  4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));      
 
+      //Ramp
+      if(get_time() > 2.0){
+        values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+      }
+      else{
+        values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 2.0) / (std::pow(H, 4));
+      }
 
       for (unsigned int i = 1; i < dim + 1; ++i)
         values[i] = 0.0;
@@ -127,7 +134,15 @@ public:
           // Case 2.
           return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
           // Case drag and lift test
-          //return 4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));          
+          //return 4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));
+
+          //Ramp
+          if(get_time() > 2.0){
+            return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
+          }
+          else{
+            return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 2.0) / (std::pow(H, 4));
+          }   
       }
       else{
         return 0.0;
