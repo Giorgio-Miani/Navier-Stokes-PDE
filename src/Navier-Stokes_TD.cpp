@@ -11,7 +11,7 @@ NavierStokes::setup()
     GridIn<dim> grid_in;
 
     grid_in.attach_triangulation(mesh_serial);
-    const std::string mesh_file_name = "../mesh/mesh-0.05.msh";
+    const std::string mesh_file_name = "../mesh/mesh-0.1.msh";
     std::ifstream grid_in_file(mesh_file_name);
     grid_in.read_msh(grid_in_file);
 
@@ -742,21 +742,17 @@ NavierStokes::output(const unsigned int &time_step, const double &time)
                            names,
                            data_component_interpretation);
 
-  std::vector<unsigned int> partition_int(mesh.n_active_cells());
-  GridTools::get_subdomain_association(mesh, partition_int);
-  const Vector<double> partitioning(partition_int.begin(), partition_int.end());
-  data_out.add_data_vector(partitioning, "partitioning");
+  // std::vector<unsigned int> partition_int(mesh.n_active_cells());
+  // GridTools::get_subdomain_association(mesh, partition_int);
+  // const Vector<double> partitioning(partition_int.begin(), partition_int.end());
+  // data_out.add_data_vector(partitioning, "partitioning");
 
   data_out.build_patches();
 
-  std::string output_file_name = std::to_string(time_step);
-
-  // Pad with zeros.
-  output_file_name = "output-" + std::string(4 - output_file_name.size(), '0') +
-                     output_file_name;
+  output_file_name = "output-" + std::to_string(time_step);
 
   DataOutBase::DataOutFilter data_filter(
-    DataOutBase::DataOutFilterFlags(/*filter_duplicate_vertices = */ false,
+    DataOutBase::DataOutFilterFlags(/*filter_duplicate_vertices = */ true,
                                     /*xdmf_hdf5_output = */ true));
   data_out.write_filtered_data(data_filter);
   data_out.write_hdf5_parallel(data_filter,
@@ -764,7 +760,7 @@ NavierStokes::output(const unsigned int &time_step, const double &time)
                                MPI_COMM_WORLD);
 
   std::vector<XDMFEntry> xdmf_entries({data_out.create_xdmf_entry(
-    data_filter, output_file_name + ".h5", time, MPI_COMM_WORLD)});
+    data_filter, "output-" + std::to_string(time_step) + ".h5", time, MPI_COMM_WORLD)});
   data_out.write_xdmf_file(xdmf_entries,
                            output_file_name + ".xdmf",
                            MPI_COMM_WORLD);

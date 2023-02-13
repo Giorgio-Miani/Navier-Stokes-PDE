@@ -109,7 +109,7 @@ public:
       // Case 1.
       // values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
       // Case 2.
-      values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
+      // values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
       // Case drag and lift test
       //values[0] =  4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));      
 
@@ -118,7 +118,7 @@ public:
         values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
       }
       else{
-        values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 2.0) / (std::pow(H, 4));
+        values[0] = 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * 0.5 * (1 - std::cos(M_PI * get_time() / 2.0)) / (std::pow(H, 4));
       }
 
       for (unsigned int i = 1; i < dim + 1; ++i)
@@ -132,7 +132,7 @@ public:
           // Case 1.
           // return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
           // Case 2.
-          return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
+          // return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 4));
           // Case drag and lift test
           //return 4 * Um * p[1] *(H - p[1]) * std::sin(M_PI * get_time() / 8.0) / (std::pow(H, 2));
 
@@ -141,7 +141,7 @@ public:
             return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) / (std::pow(H, 4));
           }
           else{
-            return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * std::sin(M_PI * get_time() / 2.0) / (std::pow(H, 4));
+            return 16 * Um * p[1] * p[2] *(H - p[1]) * (H - p[2]) * 0.5 * (1 - std::cos(M_PI * get_time() / 2.0))  / (std::pow(H, 4));
           }   
       }
       else{
