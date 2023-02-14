@@ -1,0 +1,471 @@
+Initializing the mesh
+  Number of elements = 3044
+-----------------------------------------------
+Initializing the finite element space
+  Velocity degree:           = 2
+  Pressure degree:           = 1
+  DoFs per cell              = 34
+  Quadrature points per cell = 10
+  Quadrature points per face = 7
+-----------------------------------------------
+Initializing the DoF handler
+  Number of DoFs: 
+    velocity = 16734
+    pressure = 899
+    total    = 17633
+-----------------------------------------------
+Initializing the linear system
+  Initializing the sparsity pattern
+  Initializing the matrices
+  Initializing the system right-hand side
+  Initializing the solution vector
+-----------------------------------------------
+Reynolds number: 2
+===============================================
+===============================================
+Assembling the recurrent matrices
+Applying the initial condition
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-0
+===============================================
+-----------------------------------------------
+n =   1, t = 0.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  400 GMRES iterations
+===============================================
+Calculating coefficients
+n =   2, t =  0.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  336 GMRES iterations
+===============================================
+Calculating coefficients
+n =   3, t = 0.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  391 GMRES iterations
+===============================================
+Calculating coefficients
+n =   4, t =   0.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  384 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-4
+===============================================
+n =   5, t = 0.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  368 GMRES iterations
+===============================================
+Calculating coefficients
+n =   6, t =  0.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  319 GMRES iterations
+===============================================
+Calculating coefficients
+n =   7, t = 0.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  282 GMRES iterations
+===============================================
+Calculating coefficients
+n =   8, t =     1:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  300 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-8
+===============================================
+n =   9, t = 1.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  351 GMRES iterations
+===============================================
+Calculating coefficients
+n =  10, t =  1.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  293 GMRES iterations
+===============================================
+Calculating coefficients
+n =  11, t = 1.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  346 GMRES iterations
+===============================================
+Calculating coefficients
+n =  12, t =   1.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  365 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-12
+===============================================
+n =  13, t = 1.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  439 GMRES iterations
+===============================================
+Calculating coefficients
+n =  14, t =  1.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  354 GMRES iterations
+===============================================
+Calculating coefficients
+n =  15, t = 1.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  408 GMRES iterations
+===============================================
+Calculating coefficients
+n =  16, t =     2:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  334 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-16
+===============================================
+n =  17, t = 2.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  336 GMRES iterations
+===============================================
+Calculating coefficients
+n =  18, t =  2.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  243 GMRES iterations
+===============================================
+Calculating coefficients
+n =  19, t = 2.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  174 GMRES iterations
+===============================================
+Calculating coefficients
+n =  20, t =   2.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  138 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-20
+===============================================
+n =  21, t = 2.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  112 GMRES iterations
+===============================================
+Calculating coefficients
+n =  22, t =  2.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  102 GMRES iterations
+===============================================
+Calculating coefficients
+n =  23, t = 2.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  104 GMRES iterations
+===============================================
+Calculating coefficients
+n =  24, t =     3:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  62 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-24
+===============================================
+n =  25, t = 3.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  58 GMRES iterations
+===============================================
+Calculating coefficients
+n =  26, t =  3.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  48 GMRES iterations
+===============================================
+Calculating coefficients
+n =  27, t = 3.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  40 GMRES iterations
+===============================================
+Calculating coefficients
+n =  28, t =   3.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  36 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-28
+===============================================
+n =  29, t = 3.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  36 GMRES iterations
+===============================================
+Calculating coefficients
+n =  30, t =  3.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  23 GMRES iterations
+===============================================
+Calculating coefficients
+n =  31, t = 3.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  27 GMRES iterations
+===============================================
+Calculating coefficients
+n =  32, t =     4:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  23 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-32
+===============================================
+n =  33, t = 4.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  20 GMRES iterations
+===============================================
+Calculating coefficients
+n =  34, t =  4.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  17 GMRES iterations
+===============================================
+Calculating coefficients
+n =  35, t = 4.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  16 GMRES iterations
+===============================================
+Calculating coefficients
+n =  36, t =   4.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  15 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-36
+===============================================
+n =  37, t = 4.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  11 GMRES iterations
+===============================================
+Calculating coefficients
+n =  38, t =  4.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  11 GMRES iterations
+===============================================
+Calculating coefficients
+n =  39, t = 4.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  9 GMRES iterations
+===============================================
+Calculating coefficients
+n =  40, t =     5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  8 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-40
+===============================================
+n =  41, t = 5.125:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  7 GMRES iterations
+===============================================
+Calculating coefficients
+n =  42, t =  5.25:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  5 GMRES iterations
+===============================================
+Calculating coefficients
+n =  43, t = 5.375:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  6 GMRES iterations
+===============================================
+Calculating coefficients
+n =  44, t =   5.5:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  3 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-44
+===============================================
+n =  45, t = 5.625:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  5 GMRES iterations
+===============================================
+Calculating coefficients
+n =  46, t =  5.75:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  2 GMRES iterations
+===============================================
+Calculating coefficients
+n =  47, t = 5.875:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  3 GMRES iterations
+===============================================
+Calculating coefficients
+n =  48, t =     6:
+===============================================
+Assembling the system
+===============================================
+Solving the linear system
+  2 GMRES iterations
+===============================================
+Calculating coefficients
+===============================================
+Output written to output-48
+===============================================
+===============================================
+Creating drag_coefficient.csv
+Creating lift_coefficient.csv
+Coefficients written to file
+===============================================
+
++--------------------------------------+------------------+------------+------------------+
+| Total wallclock time elapsed         |     302.4s     2 |     302.4s |     302.4s     0 |
+|                                      |                  |                               |
+| Section                  | no. calls |   min time  rank |   avg time |   max time  rank |
++--------------------------------------+------------------+------------+------------------+
+| Coefficients calculation |        49 |    0.1452s     1 |     0.179s |    0.2113s     0 |
+| Matrix assembly          |         1 |     0.588s     0 |    0.5882s |    0.5883s     3 |
+| Output                   |        49 |    0.2212s     0 |    0.2261s |     0.235s     1 |
+| Output coefficients      |         1 | 2.692e-06s     3 | 0.0003663s |  0.001456s     0 |
+| System assembly          |        48 |     20.78s     0 |     20.81s |     20.83s     1 |
+| System solving           |        48 |     280.6s     3 |     280.6s |     280.6s     1 |
++--------------------------------------+------------------+------------+------------------+
