@@ -160,7 +160,6 @@ NavierStokes::setup()
                                     sparsity_pressure_mass);
     sparsity_pressure_mass.compress();
 
-    pcout << "  Initializing the matrices" << std::endl;
     system_matrix.reinit(sparsity);
     rhs_matrix.reinit(sparsity);
     lhs_matrix.reinit(sparsity);
