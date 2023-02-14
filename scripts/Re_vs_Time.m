@@ -2,8 +2,8 @@ clear
 close all
 clc
 
-ReVStime = readmatrix('');
-plot(ReVStime(:, 1), ReVStime(:, 2), ReVStime(:, 3), 'b-');
+ReVStime = readmatrix('../Results/Reynolds-Tempo.xlsx');
+plot(ReVStime(:, 1), ReVStime(:, 2), 'r--o', ReVStime(:, 1), ReVStime(:, 3), 'b--x', 'LineWidth', 1.5);
 grid on
 title('Reynolds vs time for different meshes');
 xlabel('Re');
