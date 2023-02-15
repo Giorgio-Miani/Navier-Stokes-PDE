@@ -1,0 +1,2050 @@
+  Number of elements = 16156
+-----------------------------------------------
+  Velocity degree:           = 2
+  Pressure degree:           = 1
+  DoFs per cell              = 34
+  Quadrature points per cell = 10
+  Quadrature points per face = 7
+-----------------------------------------------
+  Number of DoFs: 
+    velocity = 78528
+    pressure = 3842
+    total    = 82370
+-----------------------------------------------
+Reynolds number: 80
+Applying the initial condition
+Output written to output-0
+===============================================
+n =   1, t = 0.03125:
+Solving the linear system
+  18676 GMRES iterations
+n =   2, t = 0.0625:
+Solving the linear system
+  10570 GMRES iterations
+n =   3, t = 0.09375:
+Solving the linear system
+  12012 GMRES iterations
+n =   4, t = 0.125:
+Solving the linear system
+  11293 GMRES iterations
+n =   5, t = 0.15625:
+Solving the linear system
+  9634 GMRES iterations
+n =   6, t = 0.1875:
+Solving the linear system
+  8874 GMRES iterations
+n =   7, t = 0.21875:
+Solving the linear system
+  8924 GMRES iterations
+n =   8, t =  0.25:
+Solving the linear system
+  9000 GMRES iterations
+n =   9, t = 0.28125:
+Solving the linear system
+  9073 GMRES iterations
+n =  10, t = 0.3125:
+Solving the linear system
+  7484 GMRES iterations
+n =  11, t = 0.34375:
+Solving the linear system
+  7822 GMRES iterations
+n =  12, t = 0.375:
+Solving the linear system
+  8230 GMRES iterations
+n =  13, t = 0.40625:
+Solving the linear system
+  7608 GMRES iterations
+n =  14, t = 0.4375:
+Solving the linear system
+  6994 GMRES iterations
+n =  15, t = 0.46875:
+Solving the linear system
+  6044 GMRES iterations
+n =  16, t =   0.5:
+Solving the linear system
+  6130 GMRES iterations
+Output written to output-16
+===============================================
+n =  17, t = 0.53125:
+Solving the linear system
+  9814 GMRES iterations
+n =  18, t = 0.5625:
+Solving the linear system
+  7616 GMRES iterations
+n =  19, t = 0.59375:
+Solving the linear system
+  6047 GMRES iterations
+n =  20, t = 0.625:
+Solving the linear system
+  6468 GMRES iterations
+n =  21, t = 0.65625:
+Solving the linear system
+  6198 GMRES iterations
+n =  22, t = 0.6875:
+Solving the linear system
+  5134 GMRES iterations
+n =  23, t = 0.71875:
+Solving the linear system
+  6222 GMRES iterations
+n =  24, t =  0.75:
+Solving the linear system
+  5610 GMRES iterations
+n =  25, t = 0.78125:
+Solving the linear system
+  4787 GMRES iterations
+n =  26, t = 0.8125:
+Solving the linear system
+  5382 GMRES iterations
+n =  27, t = 0.84375:
+Solving the linear system
+  5586 GMRES iterations
+n =  28, t = 0.875:
+Solving the linear system
+  5168 GMRES iterations
+n =  29, t = 0.90625:
+Solving the linear system
+  5064 GMRES iterations
+n =  30, t = 0.9375:
+Solving the linear system
+  5002 GMRES iterations
+n =  31, t = 0.96875:
+Solving the linear system
+  3420 GMRES iterations
+n =  32, t =     1:
+Solving the linear system
+  3950 GMRES iterations
+Output written to output-32
+===============================================
+===============================================
+n =  33, t = 1.03125:
+Solving the linear system
+  1754 GMRES iterations
+n =  34, t = 1.0625:
+Solving the linear system
+  4286 GMRES iterations
+n =  35, t = 1.09375:
+Solving the linear system
+  4156 GMRES iterations
+n =  36, t = 1.125:
+Solving the linear system
+  3612 GMRES iterations
+n =  37, t = 1.15625:
+Solving the linear system
+  5152 GMRES iterations
+n =  38, t = 1.1875:
+Solving the linear system
+  4728 GMRES iterations
+n =  39, t = 1.21875:
+Solving the linear system
+  5038 GMRES iterations
+n =  40, t =  1.25:
+Solving the linear system
+  5625 GMRES iterations
+n =  41, t = 1.28125:
+Solving the linear system
+  6102 GMRES iterations
+n =  42, t = 1.3125:
+Solving the linear system
+  4700 GMRES iterations
+n =  43, t = 1.34375:
+Solving the linear system
+  7086 GMRES iterations
+n =  44, t = 1.375:
+Solving the linear system
+  6860 GMRES iterations
+n =  45, t = 1.40625:
+Solving the linear system
+  7026 GMRES iterations
+n =  46, t = 1.4375:
+Solving the linear system
+  6298 GMRES iterations
+n =  47, t = 1.46875:
+Solving the linear system
+  7732 GMRES iterations
+n =  48, t =   1.5:
+Solving the linear system
+  7808 GMRES iterations
+Output written to output-48
+===============================================
+n =  49, t = 1.53125:
+Solving the linear system
+  6926 GMRES iterations
+n =  50, t = 1.5625:
+Solving the linear system
+  7812 GMRES iterations
+n =  51, t = 1.59375:
+Solving the linear system
+  7812 GMRES iterations
+n =  52, t = 1.625:
+Solving the linear system
+  6638 GMRES iterations
+n =  53, t = 1.65625:
+Solving the linear system
+  7898 GMRES iterations
+n =  54, t = 1.6875:
+Solving the linear system
+  7510 GMRES iterations
+n =  55, t = 1.71875:
+Solving the linear system
+  7864 GMRES iterations
+n =  56, t =  1.75:
+Solving the linear system
+  7080 GMRES iterations
+n =  57, t = 1.78125:
+Solving the linear system
+  8654 GMRES iterations
+n =  58, t = 1.8125:
+Solving the linear system
+  7986 GMRES iterations
+n =  59, t = 1.84375:
+Solving the linear system
+  8094 GMRES iterations
+n =  60, t = 1.875:
+Solving the linear system
+  7485 GMRES iterations
+n =  61, t = 1.90625:
+Solving the linear system
+  8036 GMRES iterations
+n =  62, t = 1.9375:
+Solving the linear system
+  7224 GMRES iterations
+n =  63, t = 1.96875:
+Solving the linear system
+  7872 GMRES iterations
+n =  64, t =     2:
+Solving the linear system
+  7702 GMRES iterations
+Output written to output-64
+===============================================
+===============================================
+n =  65, t = 2.03125:
+Solving the linear system
+  7889 GMRES iterations
+n =  66, t = 2.0625:
+Solving the linear system
+  2236 GMRES iterations
+n =  67, t = 2.09375:
+Solving the linear system
+  2014 GMRES iterations
+n =  68, t = 2.125:
+Solving the linear system
+  1986 GMRES iterations
+n =  69, t = 2.15625:
+Solving the linear system
+  1904 GMRES iterations
+n =  70, t = 2.1875:
+Solving the linear system
+  1512 GMRES iterations
+n =  71, t = 2.21875:
+Solving the linear system
+  1592 GMRES iterations
+n =  72, t =  2.25:
+Solving the linear system
+  1286 GMRES iterations
+n =  73, t = 2.28125:
+Solving the linear system
+  1684 GMRES iterations
+n =  74, t = 2.3125:
+Solving the linear system
+  1400 GMRES iterations
+n =  75, t = 2.34375:
+Solving the linear system
+  1290 GMRES iterations
+n =  76, t = 2.375:
+Solving the linear system
+  1292 GMRES iterations
+n =  77, t = 2.40625:
+Solving the linear system
+  1256 GMRES iterations
+n =  78, t = 2.4375:
+Solving the linear system
+  1790 GMRES iterations
+n =  79, t = 2.46875:
+Solving the linear system
+  1596 GMRES iterations
+n =  80, t =   2.5:
+Solving the linear system
+  1672 GMRES iterations
+Output written to output-80
+===============================================
+n =  81, t = 2.53125:
+Solving the linear system
+  1484 GMRES iterations
+n =  82, t = 2.5625:
+Solving the linear system
+  1480 GMRES iterations
+n =  83, t = 2.59375:
+Solving the linear system
+  1205 GMRES iterations
+n =  84, t = 2.625:
+Solving the linear system
+  1051 GMRES iterations
+n =  85, t = 2.65625:
+Solving the linear system
+  1326 GMRES iterations
+n =  86, t = 2.6875:
+Solving the linear system
+  1222 GMRES iterations
+n =  87, t = 2.71875:
+Solving the linear system
+  1106 GMRES iterations
+n =  88, t =  2.75:
+Solving the linear system
+  1040 GMRES iterations
+n =  89, t = 2.78125:
+Solving the linear system
+  1016 GMRES iterations
+n =  90, t = 2.8125:
+Solving the linear system
+  1140 GMRES iterations
+n =  91, t = 2.84375:
+Solving the linear system
+  1482 GMRES iterations
+n =  92, t = 2.875:
+Solving the linear system
+  1468 GMRES iterations
+n =  93, t = 2.90625:
+Solving the linear system
+  952 GMRES iterations
+n =  94, t = 2.9375:
+Solving the linear system
+  1246 GMRES iterations
+n =  95, t = 2.96875:
+Solving the linear system
+  1350 GMRES iterations
+n =  96, t =     3:
+Solving the linear system
+  1314 GMRES iterations
+Output written to output-96
+===============================================
+===============================================
+n =  97, t = 3.03125:
+Solving the linear system
+  1100 GMRES iterations
+n =  98, t = 3.0625:
+Solving the linear system
+  1232 GMRES iterations
+n =  99, t = 3.09375:
+Solving the linear system
+  1008 GMRES iterations
+n = 100, t = 3.125:
+Solving the linear system
+  1092 GMRES iterations
+n = 101, t = 3.15625:
+Solving the linear system
+  1252 GMRES iterations
+n = 102, t = 3.1875:
+Solving the linear system
+  982 GMRES iterations
+n = 103, t = 3.21875:
+Solving the linear system
+  783 GMRES iterations
+n = 104, t =  3.25:
+Solving the linear system
+  730 GMRES iterations
+n = 105, t = 3.28125:
+Solving the linear system
+  956 GMRES iterations
+n = 106, t = 3.3125:
+Solving the linear system
+  732 GMRES iterations
+n = 107, t = 3.34375:
+Solving the linear system
+  874 GMRES iterations
+n = 108, t = 3.375:
+Solving the linear system
+  858 GMRES iterations
+n = 109, t = 3.40625:
+Solving the linear system
+  702 GMRES iterations
+n = 110, t = 3.4375:
+Solving the linear system
+  676 GMRES iterations
+n = 111, t = 3.46875:
+Solving the linear system
+  864 GMRES iterations
+n = 112, t =   3.5:
+Solving the linear system
+  784 GMRES iterations
+Output written to output-112
+===============================================
+n = 113, t = 3.53125:
+Solving the linear system
+  814 GMRES iterations
+n = 114, t = 3.5625:
+Solving the linear system
+  902 GMRES iterations
+n = 115, t = 3.59375:
+Solving the linear system
+  834 GMRES iterations
+n = 116, t = 3.625:
+Solving the linear system
+  1014 GMRES iterations
+n = 117, t = 3.65625:
+Solving the linear system
+  980 GMRES iterations
+n = 118, t = 3.6875:
+Solving the linear system
+  926 GMRES iterations
+n = 119, t = 3.71875:
+Solving the linear system
+  964 GMRES iterations
+n = 120, t =  3.75:
+Solving the linear system
+  896 GMRES iterations
+n = 121, t = 3.78125:
+Solving the linear system
+  818 GMRES iterations
+n = 122, t = 3.8125:
+Solving the linear system
+  870 GMRES iterations
+n = 123, t = 3.84375:
+Solving the linear system
+  758 GMRES iterations
+n = 124, t = 3.875:
+Solving the linear system
+  902 GMRES iterations
+n = 125, t = 3.90625:
+Solving the linear system
+  864 GMRES iterations
+n = 126, t = 3.9375:
+Solving the linear system
+  902 GMRES iterations
+n = 127, t = 3.96875:
+Solving the linear system
+  702 GMRES iterations
+n = 128, t =     4:
+Solving the linear system
+  860 GMRES iterations
+Output written to output-128
+===============================================
+===============================================
+n = 129, t = 4.03125:
+Solving the linear system
+  728 GMRES iterations
+n = 130, t = 4.0625:
+Solving the linear system
+  734 GMRES iterations
+n = 131, t = 4.09375:
+Solving the linear system
+  788 GMRES iterations
+n = 132, t = 4.125:
+Solving the linear system
+  676 GMRES iterations
+n = 133, t = 4.15625:
+Solving the linear system
+  668 GMRES iterations
+n = 134, t = 4.1875:
+Solving the linear system
+  716 GMRES iterations
+n = 135, t = 4.21875:
+Solving the linear system
+  750 GMRES iterations
+n = 136, t =  4.25:
+Solving the linear system
+  702 GMRES iterations
+n = 137, t = 4.28125:
+Solving the linear system
+  652 GMRES iterations
+n = 138, t = 4.3125:
+Solving the linear system
+  568 GMRES iterations
+n = 139, t = 4.34375:
+Solving the linear system
+  704 GMRES iterations
+n = 140, t = 4.375:
+Solving the linear system
+  590 GMRES iterations
+n = 141, t = 4.40625:
+Solving the linear system
+  724 GMRES iterations
+n = 142, t = 4.4375:
+Solving the linear system
+  590 GMRES iterations
+n = 143, t = 4.46875:
+Solving the linear system
+  594 GMRES iterations
+n = 144, t =   4.5:
+Solving the linear system
+  540 GMRES iterations
+Output written to output-144
+===============================================
+n = 145, t = 4.53125:
+Solving the linear system
+  592 GMRES iterations
+n = 146, t = 4.5625:
+Solving the linear system
+  630 GMRES iterations
+n = 147, t = 4.59375:
+Solving the linear system
+  690 GMRES iterations
+n = 148, t = 4.625:
+Solving the linear system
+  497 GMRES iterations
+n = 149, t = 4.65625:
+Solving the linear system
+  488 GMRES iterations
+n = 150, t = 4.6875:
+Solving the linear system
+  532 GMRES iterations
+n = 151, t = 4.71875:
+Solving the linear system
+  480 GMRES iterations
+n = 152, t =  4.75:
+Solving the linear system
+  476 GMRES iterations
+n = 153, t = 4.78125:
+Solving the linear system
+  474 GMRES iterations
+n = 154, t = 4.8125:
+Solving the linear system
+  560 GMRES iterations
+n = 155, t = 4.84375:
+Solving the linear system
+  500 GMRES iterations
+n = 156, t = 4.875:
+Solving the linear system
+  476 GMRES iterations
+n = 157, t = 4.90625:
+Solving the linear system
+  446 GMRES iterations
+n = 158, t = 4.9375:
+Solving the linear system
+  640 GMRES iterations
+n = 159, t = 4.96875:
+Solving the linear system
+  500 GMRES iterations
+n = 160, t =     5:
+Solving the linear system
+  488 GMRES iterations
+Output written to output-160
+===============================================
+===============================================
+n = 161, t = 5.03125:
+Solving the linear system
+  482 GMRES iterations
+n = 162, t = 5.0625:
+Solving the linear system
+  428 GMRES iterations
+n = 163, t = 5.09375:
+Solving the linear system
+  476 GMRES iterations
+n = 164, t = 5.125:
+Solving the linear system
+  438 GMRES iterations
+n = 165, t = 5.15625:
+Solving the linear system
+  431 GMRES iterations
+n = 166, t = 5.1875:
+Solving the linear system
+  438 GMRES iterations
+n = 167, t = 5.21875:
+Solving the linear system
+  456 GMRES iterations
+n = 168, t =  5.25:
+Solving the linear system
+  430 GMRES iterations
+n = 169, t = 5.28125:
+Solving the linear system
+  426 GMRES iterations
+n = 170, t = 5.3125:
+Solving the linear system
+  422 GMRES iterations
+n = 171, t = 5.34375:
+Solving the linear system
+  420 GMRES iterations
+n = 172, t = 5.375:
+Solving the linear system
+  418 GMRES iterations
+n = 173, t = 5.40625:
+Solving the linear system
+  424 GMRES iterations
+n = 174, t = 5.4375:
+Solving the linear system
+  418 GMRES iterations
+n = 175, t = 5.46875:
+Solving the linear system
+  421 GMRES iterations
+n = 176, t =   5.5:
+Solving the linear system
+  356 GMRES iterations
+Output written to output-176
+===============================================
+n = 177, t = 5.53125:
+Solving the linear system
+  428 GMRES iterations
+n = 178, t = 5.5625:
+Solving the linear system
+  390 GMRES iterations
+n = 179, t = 5.59375:
+Solving the linear system
+  420 GMRES iterations
+n = 180, t = 5.625:
+Solving the linear system
+  352 GMRES iterations
+n = 181, t = 5.65625:
+Solving the linear system
+  418 GMRES iterations
+n = 182, t = 5.6875:
+Solving the linear system
+  340 GMRES iterations
+n = 183, t = 5.71875:
+Solving the linear system
+  418 GMRES iterations
+n = 184, t =  5.75:
+Solving the linear system
+  342 GMRES iterations
+n = 185, t = 5.78125:
+Solving the linear system
+  420 GMRES iterations
+n = 186, t = 5.8125:
+Solving the linear system
+  358 GMRES iterations
+n = 187, t = 5.84375:
+Solving the linear system
+  430 GMRES iterations
+n = 188, t = 5.875:
+Solving the linear system
+  410 GMRES iterations
+n = 189, t = 5.90625:
+Solving the linear system
+  394 GMRES iterations
+n = 190, t = 5.9375:
+Solving the linear system
+  342 GMRES iterations
+n = 191, t = 5.96875:
+Solving the linear system
+  398 GMRES iterations
+n = 192, t =     6:
+Solving the linear system
+  392 GMRES iterations
+Output written to output-192
+===============================================
+===============================================
+n = 193, t = 6.03125:
+Solving the linear system
+  344 GMRES iterations
+n = 194, t = 6.0625:
+Solving the linear system
+  404 GMRES iterations
+n = 195, t = 6.09375:
+Solving the linear system
+  388 GMRES iterations
+n = 196, t = 6.125:
+Solving the linear system
+  367 GMRES iterations
+n = 197, t = 6.15625:
+Solving the linear system
+  390 GMRES iterations
+n = 198, t = 6.1875:
+Solving the linear system
+  338 GMRES iterations
+n = 199, t = 6.21875:
+Solving the linear system
+  337 GMRES iterations
+n = 200, t =  6.25:
+Solving the linear system
+  336 GMRES iterations
+n = 201, t = 6.28125:
+Solving the linear system
+  338 GMRES iterations
+n = 202, t = 6.3125:
+Solving the linear system
+  340 GMRES iterations
+n = 203, t = 6.34375:
+Solving the linear system
+  344 GMRES iterations
+n = 204, t = 6.375:
+Solving the linear system
+  342 GMRES iterations
+n = 205, t = 6.40625:
+Solving the linear system
+  338 GMRES iterations
+n = 206, t = 6.4375:
+Solving the linear system
+  334 GMRES iterations
+n = 207, t = 6.46875:
+Solving the linear system
+  334 GMRES iterations
+n = 208, t =   6.5:
+Solving the linear system
+  334 GMRES iterations
+Output written to output-208
+===============================================
+n = 209, t = 6.53125:
+Solving the linear system
+  332 GMRES iterations
+n = 210, t = 6.5625:
+Solving the linear system
+  334 GMRES iterations
+n = 211, t = 6.59375:
+Solving the linear system
+  327 GMRES iterations
+n = 212, t = 6.625:
+Solving the linear system
+  332 GMRES iterations
+n = 213, t = 6.65625:
+Solving the linear system
+  328 GMRES iterations
+n = 214, t = 6.6875:
+Solving the linear system
+  328 GMRES iterations
+n = 215, t = 6.71875:
+Solving the linear system
+  326 GMRES iterations
+n = 216, t =  6.75:
+Solving the linear system
+  324 GMRES iterations
+n = 217, t = 6.78125:
+Solving the linear system
+  318 GMRES iterations
+n = 218, t = 6.8125:
+Solving the linear system
+  312 GMRES iterations
+n = 219, t = 6.84375:
+Solving the linear system
+  308 GMRES iterations
+n = 220, t = 6.875:
+Solving the linear system
+  288 GMRES iterations
+n = 221, t = 6.90625:
+Solving the linear system
+  308 GMRES iterations
+n = 222, t = 6.9375:
+Solving the linear system
+  280 GMRES iterations
+n = 223, t = 6.96875:
+Solving the linear system
+  282 GMRES iterations
+n = 224, t =     7:
+Solving the linear system
+  280 GMRES iterations
+Output written to output-224
+===============================================
+===============================================
+n = 225, t = 7.03125:
+Solving the linear system
+  279 GMRES iterations
+n = 226, t = 7.0625:
+Solving the linear system
+  279 GMRES iterations
+n = 227, t = 7.09375:
+Solving the linear system
+  278 GMRES iterations
+n = 228, t = 7.125:
+Solving the linear system
+  276 GMRES iterations
+n = 229, t = 7.15625:
+Solving the linear system
+  276 GMRES iterations
+n = 230, t = 7.1875:
+Solving the linear system
+  275 GMRES iterations
+n = 231, t = 7.21875:
+Solving the linear system
+  274 GMRES iterations
+n = 232, t =  7.25:
+Solving the linear system
+  272 GMRES iterations
+n = 233, t = 7.28125:
+Solving the linear system
+  272 GMRES iterations
+n = 234, t = 7.3125:
+Solving the linear system
+  270 GMRES iterations
+n = 235, t = 7.34375:
+Solving the linear system
+  268 GMRES iterations
+n = 236, t = 7.375:
+Solving the linear system
+  268 GMRES iterations
+n = 237, t = 7.40625:
+Solving the linear system
+  264 GMRES iterations
+n = 238, t = 7.4375:
+Solving the linear system
+  263 GMRES iterations
+n = 239, t = 7.46875:
+Solving the linear system
+  260 GMRES iterations
+n = 240, t =   7.5:
+Solving the linear system
+  258 GMRES iterations
+Output written to output-240
+===============================================
+n = 241, t = 7.53125:
+Solving the linear system
+  256 GMRES iterations
+n = 242, t = 7.5625:
+Solving the linear system
+  254 GMRES iterations
+n = 243, t = 7.59375:
+Solving the linear system
+  252 GMRES iterations
+n = 244, t = 7.625:
+Solving the linear system
+  250 GMRES iterations
+n = 245, t = 7.65625:
+Solving the linear system
+  254 GMRES iterations
+n = 246, t = 7.6875:
+Solving the linear system
+  234 GMRES iterations
+n = 247, t = 7.71875:
+Solving the linear system
+  260 GMRES iterations
+n = 248, t =  7.75:
+Solving the linear system
+  242 GMRES iterations
+n = 249, t = 7.78125:
+Solving the linear system
+  256 GMRES iterations
+n = 250, t = 7.8125:
+Solving the linear system
+  224 GMRES iterations
+n = 251, t = 7.84375:
+Solving the linear system
+  256 GMRES iterations
+n = 252, t = 7.875:
+Solving the linear system
+  211 GMRES iterations
+n = 253, t = 7.90625:
+Solving the linear system
+  260 GMRES iterations
+n = 254, t = 7.9375:
+Solving the linear system
+  208 GMRES iterations
+n = 255, t = 7.96875:
+Solving the linear system
+  256 GMRES iterations
+n = 256, t =     8:
+Solving the linear system
+  196 GMRES iterations
+Output written to output-256
+===============================================
+===============================================
+n = 257, t = 8.03125:
+Solving the linear system
+  252 GMRES iterations
+n = 258, t = 8.0625:
+Solving the linear system
+  192 GMRES iterations
+n = 259, t = 8.09375:
+Solving the linear system
+  233 GMRES iterations
+n = 260, t = 8.125:
+Solving the linear system
+  233 GMRES iterations
+n = 261, t = 8.15625:
+Solving the linear system
+  224 GMRES iterations
+n = 262, t = 8.1875:
+Solving the linear system
+  198 GMRES iterations
+n = 263, t = 8.21875:
+Solving the linear system
+  224 GMRES iterations
+n = 264, t =  8.25:
+Solving the linear system
+  196 GMRES iterations
+n = 265, t = 8.28125:
+Solving the linear system
+  201 GMRES iterations
+n = 266, t = 8.3125:
+Solving the linear system
+  224 GMRES iterations
+n = 267, t = 8.34375:
+Solving the linear system
+  192 GMRES iterations
+n = 268, t = 8.375:
+Solving the linear system
+  194 GMRES iterations
+n = 269, t = 8.40625:
+Solving the linear system
+  196 GMRES iterations
+n = 270, t = 8.4375:
+Solving the linear system
+  196 GMRES iterations
+n = 271, t = 8.46875:
+Solving the linear system
+  194 GMRES iterations
+n = 272, t =   8.5:
+Solving the linear system
+  192 GMRES iterations
+Output written to output-272
+===============================================
+n = 273, t = 8.53125:
+Solving the linear system
+  191 GMRES iterations
+n = 274, t = 8.5625:
+Solving the linear system
+  190 GMRES iterations
+n = 275, t = 8.59375:
+Solving the linear system
+  190 GMRES iterations
+n = 276, t = 8.625:
+Solving the linear system
+  188 GMRES iterations
+n = 277, t = 8.65625:
+Solving the linear system
+  188 GMRES iterations
+n = 278, t = 8.6875:
+Solving the linear system
+  186 GMRES iterations
+n = 279, t = 8.71875:
+Solving the linear system
+  186 GMRES iterations
+n = 280, t =  8.75:
+Solving the linear system
+  184 GMRES iterations
+n = 281, t = 8.78125:
+Solving the linear system
+  184 GMRES iterations
+n = 282, t = 8.8125:
+Solving the linear system
+  184 GMRES iterations
+n = 283, t = 8.84375:
+Solving the linear system
+  182 GMRES iterations
+n = 284, t = 8.875:
+Solving the linear system
+  182 GMRES iterations
+n = 285, t = 8.90625:
+Solving the linear system
+  180 GMRES iterations
+n = 286, t = 8.9375:
+Solving the linear system
+  180 GMRES iterations
+n = 287, t = 8.96875:
+Solving the linear system
+  178 GMRES iterations
+n = 288, t =     9:
+Solving the linear system
+  178 GMRES iterations
+Output written to output-288
+===============================================
+===============================================
+n = 289, t = 9.03125:
+Solving the linear system
+  176 GMRES iterations
+n = 290, t = 9.0625:
+Solving the linear system
+  174 GMRES iterations
+n = 291, t = 9.09375:
+Solving the linear system
+  172 GMRES iterations
+n = 292, t = 9.125:
+Solving the linear system
+  170 GMRES iterations
+n = 293, t = 9.15625:
+Solving the linear system
+  168 GMRES iterations
+n = 294, t = 9.1875:
+Solving the linear system
+  166 GMRES iterations
+n = 295, t = 9.21875:
+Solving the linear system
+  165 GMRES iterations
+n = 296, t =  9.25:
+Solving the linear system
+  164 GMRES iterations
+n = 297, t = 9.28125:
+Solving the linear system
+  162 GMRES iterations
+n = 298, t = 9.3125:
+Solving the linear system
+  161 GMRES iterations
+n = 299, t = 9.34375:
+Solving the linear system
+  160 GMRES iterations
+n = 300, t = 9.375:
+Solving the linear system
+  158 GMRES iterations
+n = 301, t = 9.40625:
+Solving the linear system
+  157 GMRES iterations
+n = 302, t = 9.4375:
+Solving the linear system
+  156 GMRES iterations
+n = 303, t = 9.46875:
+Solving the linear system
+  154 GMRES iterations
+n = 304, t =   9.5:
+Solving the linear system
+  153 GMRES iterations
+Output written to output-304
+===============================================
+n = 305, t = 9.53125:
+Solving the linear system
+  152 GMRES iterations
+n = 306, t = 9.5625:
+Solving the linear system
+  150 GMRES iterations
+n = 307, t = 9.59375:
+Solving the linear system
+  148 GMRES iterations
+n = 308, t = 9.625:
+Solving the linear system
+  148 GMRES iterations
+n = 309, t = 9.65625:
+Solving the linear system
+  146 GMRES iterations
+n = 310, t = 9.6875:
+Solving the linear system
+  146 GMRES iterations
+n = 311, t = 9.71875:
+Solving the linear system
+  144 GMRES iterations
+n = 312, t =  9.75:
+Solving the linear system
+  144 GMRES iterations
+n = 313, t = 9.78125:
+Solving the linear system
+  143 GMRES iterations
+n = 314, t = 9.8125:
+Solving the linear system
+  142 GMRES iterations
+n = 315, t = 9.84375:
+Solving the linear system
+  142 GMRES iterations
+n = 316, t = 9.875:
+Solving the linear system
+  142 GMRES iterations
+n = 317, t = 9.90625:
+Solving the linear system
+  140 GMRES iterations
+n = 318, t = 9.9375:
+Solving the linear system
+  140 GMRES iterations
+n = 319, t = 9.96875:
+Solving the linear system
+  139 GMRES iterations
+n = 320, t =    10:
+Solving the linear system
+  138 GMRES iterations
+Output written to output-320
+===============================================
+===============================================
+n = 321, t = 10.0312:
+Solving the linear system
+  138 GMRES iterations
+n = 322, t = 10.0625:
+Solving the linear system
+  138 GMRES iterations
+n = 323, t = 10.0938:
+Solving the linear system
+  137 GMRES iterations
+n = 324, t = 10.125:
+Solving the linear system
+  136 GMRES iterations
+n = 325, t = 10.1562:
+Solving the linear system
+  136 GMRES iterations
+n = 326, t = 10.1875:
+Solving the linear system
+  136 GMRES iterations
+n = 327, t = 10.2188:
+Solving the linear system
+  134 GMRES iterations
+n = 328, t = 10.25:
+Solving the linear system
+  134 GMRES iterations
+n = 329, t = 10.2812:
+Solving the linear system
+  134 GMRES iterations
+n = 330, t = 10.3125:
+Solving the linear system
+  134 GMRES iterations
+n = 331, t = 10.3438:
+Solving the linear system
+  133 GMRES iterations
+n = 332, t = 10.375:
+Solving the linear system
+  132 GMRES iterations
+n = 333, t = 10.4062:
+Solving the linear system
+  132 GMRES iterations
+n = 334, t = 10.4375:
+Solving the linear system
+  132 GMRES iterations
+n = 335, t = 10.4688:
+Solving the linear system
+  131 GMRES iterations
+n = 336, t =  10.5:
+Solving the linear system
+  130 GMRES iterations
+Output written to output-336
+===============================================
+n = 337, t = 10.5312:
+Solving the linear system
+  130 GMRES iterations
+n = 338, t = 10.5625:
+Solving the linear system
+  130 GMRES iterations
+n = 339, t = 10.5938:
+Solving the linear system
+  130 GMRES iterations
+n = 340, t = 10.625:
+Solving the linear system
+  128 GMRES iterations
+n = 341, t = 10.6562:
+Solving the linear system
+  127 GMRES iterations
+n = 342, t = 10.6875:
+Solving the linear system
+  126 GMRES iterations
+n = 343, t = 10.7188:
+Solving the linear system
+  126 GMRES iterations
+n = 344, t = 10.75:
+Solving the linear system
+  126 GMRES iterations
+n = 345, t = 10.7812:
+Solving the linear system
+  124 GMRES iterations
+n = 346, t = 10.8125:
+Solving the linear system
+  124 GMRES iterations
+n = 347, t = 10.8438:
+Solving the linear system
+  124 GMRES iterations
+n = 348, t = 10.875:
+Solving the linear system
+  123 GMRES iterations
+n = 349, t = 10.9062:
+Solving the linear system
+  122 GMRES iterations
+n = 350, t = 10.9375:
+Solving the linear system
+  122 GMRES iterations
+n = 351, t = 10.9688:
+Solving the linear system
+  122 GMRES iterations
+n = 352, t =    11:
+Solving the linear system
+  120 GMRES iterations
+Output written to output-352
+===============================================
+===============================================
+n = 353, t = 11.0312:
+Solving the linear system
+  120 GMRES iterations
+n = 354, t = 11.0625:
+Solving the linear system
+  120 GMRES iterations
+n = 355, t = 11.0938:
+Solving the linear system
+  120 GMRES iterations
+n = 356, t = 11.125:
+Solving the linear system
+  120 GMRES iterations
+n = 357, t = 11.1562:
+Solving the linear system
+  118 GMRES iterations
+n = 358, t = 11.1875:
+Solving the linear system
+  118 GMRES iterations
+n = 359, t = 11.2188:
+Solving the linear system
+  118 GMRES iterations
+n = 360, t = 11.25:
+Solving the linear system
+  118 GMRES iterations
+n = 361, t = 11.2812:
+Solving the linear system
+  118 GMRES iterations
+n = 362, t = 11.3125:
+Solving the linear system
+  117 GMRES iterations
+n = 363, t = 11.3438:
+Solving the linear system
+  116 GMRES iterations
+n = 364, t = 11.375:
+Solving the linear system
+  116 GMRES iterations
+n = 365, t = 11.4062:
+Solving the linear system
+  116 GMRES iterations
+n = 366, t = 11.4375:
+Solving the linear system
+  116 GMRES iterations
+n = 367, t = 11.4688:
+Solving the linear system
+  116 GMRES iterations
+n = 368, t =  11.5:
+Solving the linear system
+  116 GMRES iterations
+Output written to output-368
+===============================================
+n = 369, t = 11.5312:
+Solving the linear system
+  116 GMRES iterations
+n = 370, t = 11.5625:
+Solving the linear system
+  116 GMRES iterations
+n = 371, t = 11.5938:
+Solving the linear system
+  115 GMRES iterations
+n = 372, t = 11.625:
+Solving the linear system
+  114 GMRES iterations
+n = 373, t = 11.6562:
+Solving the linear system
+  114 GMRES iterations
+n = 374, t = 11.6875:
+Solving the linear system
+  114 GMRES iterations
+n = 375, t = 11.7188:
+Solving the linear system
+  114 GMRES iterations
+n = 376, t = 11.75:
+Solving the linear system
+  114 GMRES iterations
+n = 377, t = 11.7812:
+Solving the linear system
+  114 GMRES iterations
+n = 378, t = 11.8125:
+Solving the linear system
+  114 GMRES iterations
+n = 379, t = 11.8438:
+Solving the linear system
+  114 GMRES iterations
+n = 380, t = 11.875:
+Solving the linear system
+  114 GMRES iterations
+n = 381, t = 11.9062:
+Solving the linear system
+  114 GMRES iterations
+n = 382, t = 11.9375:
+Solving the linear system
+  114 GMRES iterations
+n = 383, t = 11.9688:
+Solving the linear system
+  112 GMRES iterations
+n = 384, t =    12:
+Solving the linear system
+  112 GMRES iterations
+Output written to output-384
+===============================================
+===============================================
+n = 385, t = 12.0312:
+Solving the linear system
+  112 GMRES iterations
+n = 386, t = 12.0625:
+Solving the linear system
+  112 GMRES iterations
+n = 387, t = 12.0938:
+Solving the linear system
+  112 GMRES iterations
+n = 388, t = 12.125:
+Solving the linear system
+  112 GMRES iterations
+n = 389, t = 12.1562:
+Solving the linear system
+  112 GMRES iterations
+n = 390, t = 12.1875:
+Solving the linear system
+  112 GMRES iterations
+n = 391, t = 12.2188:
+Solving the linear system
+  112 GMRES iterations
+n = 392, t = 12.25:
+Solving the linear system
+  112 GMRES iterations
+n = 393, t = 12.2812:
+Solving the linear system
+  112 GMRES iterations
+n = 394, t = 12.3125:
+Solving the linear system
+  112 GMRES iterations
+n = 395, t = 12.3438:
+Solving the linear system
+  112 GMRES iterations
+n = 396, t = 12.375:
+Solving the linear system
+  112 GMRES iterations
+n = 397, t = 12.4062:
+Solving the linear system
+  112 GMRES iterations
+n = 398, t = 12.4375:
+Solving the linear system
+  112 GMRES iterations
+n = 399, t = 12.4688:
+Solving the linear system
+  110 GMRES iterations
+n = 400, t =  12.5:
+Solving the linear system
+  110 GMRES iterations
+Output written to output-400
+===============================================
+n = 401, t = 12.5312:
+Solving the linear system
+  110 GMRES iterations
+n = 402, t = 12.5625:
+Solving the linear system
+  110 GMRES iterations
+n = 403, t = 12.5938:
+Solving the linear system
+  110 GMRES iterations
+n = 404, t = 12.625:
+Solving the linear system
+  110 GMRES iterations
+n = 405, t = 12.6562:
+Solving the linear system
+  110 GMRES iterations
+n = 406, t = 12.6875:
+Solving the linear system
+  110 GMRES iterations
+n = 407, t = 12.7188:
+Solving the linear system
+  110 GMRES iterations
+n = 408, t = 12.75:
+Solving the linear system
+  110 GMRES iterations
+n = 409, t = 12.7812:
+Solving the linear system
+  110 GMRES iterations
+n = 410, t = 12.8125:
+Solving the linear system
+  110 GMRES iterations
+n = 411, t = 12.8438:
+Solving the linear system
+  110 GMRES iterations
+n = 412, t = 12.875:
+Solving the linear system
+  110 GMRES iterations
+n = 413, t = 12.9062:
+Solving the linear system
+  110 GMRES iterations
+n = 414, t = 12.9375:
+Solving the linear system
+  110 GMRES iterations
+n = 415, t = 12.9688:
+Solving the linear system
+  110 GMRES iterations
+n = 416, t =    13:
+Solving the linear system
+  108 GMRES iterations
+Output written to output-416
+===============================================
+===============================================
+n = 417, t = 13.0312:
+Solving the linear system
+  108 GMRES iterations
+n = 418, t = 13.0625:
+Solving the linear system
+  108 GMRES iterations
+n = 419, t = 13.0938:
+Solving the linear system
+  108 GMRES iterations
+n = 420, t = 13.125:
+Solving the linear system
+  108 GMRES iterations
+n = 421, t = 13.1562:
+Solving the linear system
+  108 GMRES iterations
+n = 422, t = 13.1875:
+Solving the linear system
+  108 GMRES iterations
+n = 423, t = 13.2188:
+Solving the linear system
+  108 GMRES iterations
+n = 424, t = 13.25:
+Solving the linear system
+  108 GMRES iterations
+n = 425, t = 13.2812:
+Solving the linear system
+  108 GMRES iterations
+n = 426, t = 13.3125:
+Solving the linear system
+  108 GMRES iterations
+n = 427, t = 13.3438:
+Solving the linear system
+  108 GMRES iterations
+n = 428, t = 13.375:
+Solving the linear system
+  108 GMRES iterations
+n = 429, t = 13.4062:
+Solving the linear system
+  108 GMRES iterations
+n = 430, t = 13.4375:
+Solving the linear system
+  108 GMRES iterations
+n = 431, t = 13.4688:
+Solving the linear system
+  108 GMRES iterations
+n = 432, t =  13.5:
+Solving the linear system
+  108 GMRES iterations
+Output written to output-432
+===============================================
+n = 433, t = 13.5312:
+Solving the linear system
+  108 GMRES iterations
+n = 434, t = 13.5625:
+Solving the linear system
+  108 GMRES iterations
+n = 435, t = 13.5938:
+Solving the linear system
+  106 GMRES iterations
+n = 436, t = 13.625:
+Solving the linear system
+  106 GMRES iterations
+n = 437, t = 13.6562:
+Solving the linear system
+  106 GMRES iterations
+n = 438, t = 13.6875:
+Solving the linear system
+  106 GMRES iterations
+n = 439, t = 13.7188:
+Solving the linear system
+  106 GMRES iterations
+n = 440, t = 13.75:
+Solving the linear system
+  106 GMRES iterations
+n = 441, t = 13.7812:
+Solving the linear system
+  106 GMRES iterations
+n = 442, t = 13.8125:
+Solving the linear system
+  106 GMRES iterations
+n = 443, t = 13.8438:
+Solving the linear system
+  106 GMRES iterations
+n = 444, t = 13.875:
+Solving the linear system
+  106 GMRES iterations
+n = 445, t = 13.9062:
+Solving the linear system
+  106 GMRES iterations
+n = 446, t = 13.9375:
+Solving the linear system
+  106 GMRES iterations
+n = 447, t = 13.9688:
+Solving the linear system
+  106 GMRES iterations
+n = 448, t =    14:
+Solving the linear system
+  106 GMRES iterations
+Output written to output-448
+===============================================
+===============================================
+n = 449, t = 14.0312:
+Solving the linear system
+  106 GMRES iterations
+n = 450, t = 14.0625:
+Solving the linear system
+  106 GMRES iterations
+n = 451, t = 14.0938:
+Solving the linear system
+  106 GMRES iterations
+n = 452, t = 14.125:
+Solving the linear system
+  104 GMRES iterations
+n = 453, t = 14.1562:
+Solving the linear system
+  104 GMRES iterations
+n = 454, t = 14.1875:
+Solving the linear system
+  104 GMRES iterations
+n = 455, t = 14.2188:
+Solving the linear system
+  104 GMRES iterations
+n = 456, t = 14.25:
+Solving the linear system
+  104 GMRES iterations
+n = 457, t = 14.2812:
+Solving the linear system
+  104 GMRES iterations
+n = 458, t = 14.3125:
+Solving the linear system
+  104 GMRES iterations
+n = 459, t = 14.3438:
+Solving the linear system
+  104 GMRES iterations
+n = 460, t = 14.375:
+Solving the linear system
+  104 GMRES iterations
+n = 461, t = 14.4062:
+Solving the linear system
+  104 GMRES iterations
+n = 462, t = 14.4375:
+Solving the linear system
+  104 GMRES iterations
+n = 463, t = 14.4688:
+Solving the linear system
+  104 GMRES iterations
+n = 464, t =  14.5:
+Solving the linear system
+  104 GMRES iterations
+Output written to output-464
+===============================================
+n = 465, t = 14.5312:
+Solving the linear system
+  104 GMRES iterations
+n = 466, t = 14.5625:
+Solving the linear system
+  104 GMRES iterations
+n = 467, t = 14.5938:
+Solving the linear system
+  104 GMRES iterations
+n = 468, t = 14.625:
+Solving the linear system
+  104 GMRES iterations
+n = 469, t = 14.6562:
+Solving the linear system
+  102 GMRES iterations
+n = 470, t = 14.6875:
+Solving the linear system
+  102 GMRES iterations
+n = 471, t = 14.7188:
+Solving the linear system
+  102 GMRES iterations
+n = 472, t = 14.75:
+Solving the linear system
+  102 GMRES iterations
+n = 473, t = 14.7812:
+Solving the linear system
+  102 GMRES iterations
+n = 474, t = 14.8125:
+Solving the linear system
+  102 GMRES iterations
+n = 475, t = 14.8438:
+Solving the linear system
+  102 GMRES iterations
+n = 476, t = 14.875:
+Solving the linear system
+  102 GMRES iterations
+n = 477, t = 14.9062:
+Solving the linear system
+  102 GMRES iterations
+n = 478, t = 14.9375:
+Solving the linear system
+  102 GMRES iterations
+n = 479, t = 14.9688:
+Solving the linear system
+  102 GMRES iterations
+n = 480, t =    15:
+Solving the linear system
+  102 GMRES iterations
+Output written to output-480
+===============================================
+===============================================
+n = 481, t = 15.0312:
+Solving the linear system
+  102 GMRES iterations
+n = 482, t = 15.0625:
+Solving the linear system
+  102 GMRES iterations
+n = 483, t = 15.0938:
+Solving the linear system
+  102 GMRES iterations
+n = 484, t = 15.125:
+Solving the linear system
+  102 GMRES iterations
+n = 485, t = 15.1562:
+Solving the linear system
+  100 GMRES iterations
+n = 486, t = 15.1875:
+Solving the linear system
+  100 GMRES iterations
+n = 487, t = 15.2188:
+Solving the linear system
+  100 GMRES iterations
+n = 488, t = 15.25:
+Solving the linear system
+  100 GMRES iterations
+n = 489, t = 15.2812:
+Solving the linear system
+  100 GMRES iterations
+n = 490, t = 15.3125:
+Solving the linear system
+  100 GMRES iterations
+n = 491, t = 15.3438:
+Solving the linear system
+  100 GMRES iterations
+n = 492, t = 15.375:
+Solving the linear system
+  100 GMRES iterations
+n = 493, t = 15.4062:
+Solving the linear system
+  100 GMRES iterations
+n = 494, t = 15.4375:
+Solving the linear system
+  100 GMRES iterations
+n = 495, t = 15.4688:
+Solving the linear system
+  100 GMRES iterations
+n = 496, t =  15.5:
+Solving the linear system
+  100 GMRES iterations
+Output written to output-496
+===============================================
+n = 497, t = 15.5312:
+Solving the linear system
+  100 GMRES iterations
+n = 498, t = 15.5625:
+Solving the linear system
+  100 GMRES iterations
+n = 499, t = 15.5938:
+Solving the linear system
+  98 GMRES iterations
+n = 500, t = 15.625:
+Solving the linear system
+  100 GMRES iterations
+n = 501, t = 15.6562:
+Solving the linear system
+  98 GMRES iterations
+n = 502, t = 15.6875:
+Solving the linear system
+  98 GMRES iterations
+n = 503, t = 15.7188:
+Solving the linear system
+  98 GMRES iterations
+n = 504, t = 15.75:
+Solving the linear system
+  98 GMRES iterations
+n = 505, t = 15.7812:
+Solving the linear system
+  98 GMRES iterations
+n = 506, t = 15.8125:
+Solving the linear system
+  98 GMRES iterations
+n = 507, t = 15.8438:
+Solving the linear system
+  98 GMRES iterations
+n = 508, t = 15.875:
+Solving the linear system
+  98 GMRES iterations
+n = 509, t = 15.9062:
+Solving the linear system
+  98 GMRES iterations
+n = 510, t = 15.9375:
+Solving the linear system
+  98 GMRES iterations
+n = 511, t = 15.9688:
+Solving the linear system
+  98 GMRES iterations
+n = 512, t =    16:
+Solving the linear system
+  98 GMRES iterations
+Output written to output-512
+===============================================
+===============================================
+n = 513, t = 16.0312:
+Solving the linear system
+  98 GMRES iterations
+n = 514, t = 16.0625:
+Solving the linear system
+  98 GMRES iterations
+n = 515, t = 16.0938:
+Solving the linear system
+  96 GMRES iterations
+n = 516, t = 16.125:
+Solving the linear system
+  96 GMRES iterations
+n = 517, t = 16.1562:
+Solving the linear system
+  96 GMRES iterations
+n = 518, t = 16.1875:
+Solving the linear system
+  96 GMRES iterations
+n = 519, t = 16.2188:
+Solving the linear system
+  96 GMRES iterations
+n = 520, t = 16.25:
+Solving the linear system
+  96 GMRES iterations
+n = 521, t = 16.2812:
+Solving the linear system
+  96 GMRES iterations
+n = 522, t = 16.3125:
+Solving the linear system
+  96 GMRES iterations
+n = 523, t = 16.3438:
+Solving the linear system
+  96 GMRES iterations
+n = 524, t = 16.375:
+Solving the linear system
+  96 GMRES iterations
+n = 525, t = 16.4062:
+Solving the linear system
+  96 GMRES iterations
+n = 526, t = 16.4375:
+Solving the linear system
+  96 GMRES iterations
+n = 527, t = 16.4688:
+Solving the linear system
+  96 GMRES iterations
+n = 528, t =  16.5:
+Solving the linear system
+  94 GMRES iterations
+Output written to output-528
+===============================================
+n = 529, t = 16.5312:
+Solving the linear system
+  96 GMRES iterations
+n = 530, t = 16.5625:
+Solving the linear system
+  94 GMRES iterations
+n = 531, t = 16.5938:
+Solving the linear system
+  94 GMRES iterations
+n = 532, t = 16.625:
+Solving the linear system
+  94 GMRES iterations
+n = 533, t = 16.6562:
+Solving the linear system
+  94 GMRES iterations
+n = 534, t = 16.6875:
+Solving the linear system
+  94 GMRES iterations
+n = 535, t = 16.7188:
+Solving the linear system
+  94 GMRES iterations
+n = 536, t = 16.75:
+Solving the linear system
+  94 GMRES iterations
+n = 537, t = 16.7812:
+Solving the linear system
+  94 GMRES iterations
+n = 538, t = 16.8125:
+Solving the linear system
+  94 GMRES iterations
+n = 539, t = 16.8438:
+Solving the linear system
+  94 GMRES iterations
+n = 540, t = 16.875:
+Solving the linear system
+  94 GMRES iterations
+n = 541, t = 16.9062:
+Solving the linear system
+  92 GMRES iterations
+n = 542, t = 16.9375:
+Solving the linear system
+  92 GMRES iterations
+n = 543, t = 16.9688:
+Solving the linear system
+  92 GMRES iterations
+n = 544, t =    17:
+Solving the linear system
+  92 GMRES iterations
+Output written to output-544
+===============================================
+===============================================
+n = 545, t = 17.0312:
+Solving the linear system
+  92 GMRES iterations
+n = 546, t = 17.0625:
+Solving the linear system
+  92 GMRES iterations
+n = 547, t = 17.0938:
+Solving the linear system
+  92 GMRES iterations
+n = 548, t = 17.125:
+Solving the linear system
+  92 GMRES iterations
+n = 549, t = 17.1562:
+Solving the linear system
+  92 GMRES iterations
+n = 550, t = 17.1875:
+Solving the linear system
+  92 GMRES iterations
+n = 551, t = 17.2188:
+Solving the linear system
+  92 GMRES iterations
+n = 552, t = 17.25:
+Solving the linear system
+  92 GMRES iterations
+n = 553, t = 17.2812:
+Solving the linear system
+  92 GMRES iterations
+n = 554, t = 17.3125:
+Solving the linear system
+  92 GMRES iterations
+n = 555, t = 17.3438:
+Solving the linear system
+  92 GMRES iterations
+n = 556, t = 17.375:
+Solving the linear system
+  90 GMRES iterations
+n = 557, t = 17.4062:
+Solving the linear system
+  90 GMRES iterations
+n = 558, t = 17.4375:
+Solving the linear system
+  90 GMRES iterations
+n = 559, t = 17.4688:
+Solving the linear system
+  90 GMRES iterations
+n = 560, t =  17.5:
+Solving the linear system
+  90 GMRES iterations
+Output written to output-560
+===============================================
+n = 561, t = 17.5312:
+Solving the linear system
+  90 GMRES iterations
+n = 562, t = 17.5625:
+Solving the linear system
+  90 GMRES iterations
+n = 563, t = 17.5938:
+Solving the linear system
+  90 GMRES iterations
+n = 564, t = 17.625:
+Solving the linear system
+  90 GMRES iterations
+n = 565, t = 17.6562:
+Solving the linear system
+  90 GMRES iterations
+n = 566, t = 17.6875:
+Solving the linear system
+  90 GMRES iterations
+n = 567, t = 17.7188:
+Solving the linear system
+  90 GMRES iterations
+n = 568, t = 17.75:
+Solving the linear system
+  90 GMRES iterations
+n = 569, t = 17.7812:
+Solving the linear system
+  90 GMRES iterations
+n = 570, t = 17.8125:
+Solving the linear system
+  90 GMRES iterations
+n = 571, t = 17.8438:
+Solving the linear system
+  88 GMRES iterations
+n = 572, t = 17.875:
+Solving the linear system
+  88 GMRES iterations
+n = 573, t = 17.9062:
+Solving the linear system
+  88 GMRES iterations
+n = 574, t = 17.9375:
+Solving the linear system
+  88 GMRES iterations
+n = 575, t = 17.9688:
+Solving the linear system
+  88 GMRES iterations
+n = 576, t =    18:
+Solving the linear system
+  88 GMRES iterations
+Output written to output-576
+===============================================
+===============================================
+n = 577, t = 18.0312:
+Solving the linear system
+  88 GMRES iterations
+n = 578, t = 18.0625:
+Solving the linear system
+  88 GMRES iterations
+n = 579, t = 18.0938:
+Solving the linear system
+  88 GMRES iterations
+n = 580, t = 18.125:
+Solving the linear system
+  88 GMRES iterations
+n = 581, t = 18.1562:
+Solving the linear system
+  88 GMRES iterations
+n = 582, t = 18.1875:
+Solving the linear system
+  88 GMRES iterations
+n = 583, t = 18.2188:
+Solving the linear system
+  88 GMRES iterations
+n = 584, t = 18.25:
+Solving the linear system
+  88 GMRES iterations
+n = 585, t = 18.2812:
+Solving the linear system
+  88 GMRES iterations
+n = 586, t = 18.3125:
+Solving the linear system
+  88 GMRES iterations
+n = 587, t = 18.3438:
+Solving the linear system
+  88 GMRES iterations
+n = 588, t = 18.375:
+Solving the linear system
+  88 GMRES iterations
+n = 589, t = 18.4062:
+Solving the linear system
+  88 GMRES iterations
+n = 590, t = 18.4375:
+Solving the linear system
+  86 GMRES iterations
+n = 591, t = 18.4688:
+Solving the linear system
+  88 GMRES iterations
+n = 592, t =  18.5:
+Solving the linear system
+  86 GMRES iterations
+Output written to output-592
+===============================================
+n = 593, t = 18.5312:
+Solving the linear system
+  86 GMRES iterations
+n = 594, t = 18.5625:
+Solving the linear system
+  86 GMRES iterations
+n = 595, t = 18.5938:
+Solving the linear system
+  86 GMRES iterations
+n = 596, t = 18.625:
+Solving the linear system
+  86 GMRES iterations
+n = 597, t = 18.6562:
+Solving the linear system
+  86 GMRES iterations
+n = 598, t = 18.6875:
+Solving the linear system
+  86 GMRES iterations
+n = 599, t = 18.7188:
+Solving the linear system
+  86 GMRES iterations
+n = 600, t = 18.75:
+Solving the linear system
+  86 GMRES iterations
+n = 601, t = 18.7812:
+Solving the linear system
+  86 GMRES iterations
+n = 602, t = 18.8125:
+Solving the linear system
+  86 GMRES iterations
+n = 603, t = 18.8438:
+Solving the linear system
+  86 GMRES iterations
+n = 604, t = 18.875:
+Solving the linear system
+  86 GMRES iterations
+n = 605, t = 18.9062:
+Solving the linear system
+  86 GMRES iterations
+n = 606, t = 18.9375:
+Solving the linear system
+  86 GMRES iterations
+n = 607, t = 18.9688:
+Solving the linear system
+  86 GMRES iterations
+n = 608, t =    19:
+Solving the linear system
+  86 GMRES iterations
+Output written to output-608
+===============================================
+===============================================
+n = 609, t = 19.0312:
+Solving the linear system
+  86 GMRES iterations
+n = 610, t = 19.0625:
+Solving the linear system
+  84 GMRES iterations
+n = 611, t = 19.0938:
+Solving the linear system
+  84 GMRES iterations
+n = 612, t = 19.125:
+Solving the linear system
+  84 GMRES iterations
+n = 613, t = 19.1562:
+Solving the linear system
+  84 GMRES iterations
+n = 614, t = 19.1875:
+Solving the linear system
+  84 GMRES iterations
+n = 615, t = 19.2188:
+Solving the linear system
+  84 GMRES iterations
+n = 616, t = 19.25:
+Solving the linear system
+  84 GMRES iterations
+n = 617, t = 19.2812:
+Solving the linear system
+  84 GMRES iterations
+n = 618, t = 19.3125:
+Solving the linear system
+  84 GMRES iterations
+n = 619, t = 19.3438:
+Solving the linear system
+  84 GMRES iterations
+n = 620, t = 19.375:
+Solving the linear system
+  84 GMRES iterations
+n = 621, t = 19.4062:
+Solving the linear system
+  84 GMRES iterations
+n = 622, t = 19.4375:
+Solving the linear system
+  84 GMRES iterations
+n = 623, t = 19.4688:
+Solving the linear system
+  84 GMRES iterations
+n = 624, t =  19.5:
+Solving the linear system
+  84 GMRES iterations
+Output written to output-624
+===============================================
+n = 625, t = 19.5312:
+Solving the linear system
+  84 GMRES iterations
+n = 626, t = 19.5625:
+Solving the linear system
+  84 GMRES iterations
+n = 627, t = 19.5938:
+Solving the linear system
+  84 GMRES iterations
+n = 628, t = 19.625:
+Solving the linear system
+  84 GMRES iterations
+n = 629, t = 19.6562:
+Solving the linear system
+  84 GMRES iterations
+n = 630, t = 19.6875:
+Solving the linear system
+  84 GMRES iterations
+n = 631, t = 19.7188:
+Solving the linear system
+  84 GMRES iterations
+n = 632, t = 19.75:
+Solving the linear system
+  84 GMRES iterations
+n = 633, t = 19.7812:
+Solving the linear system
+  84 GMRES iterations
+n = 634, t = 19.8125:
+Solving the linear system
+  82 GMRES iterations
+n = 635, t = 19.8438:
+Solving the linear system
+  84 GMRES iterations
+n = 636, t = 19.875:
+Solving the linear system
+  82 GMRES iterations
+n = 637, t = 19.9062:
+Solving the linear system
+  82 GMRES iterations
+n = 638, t = 19.9375:
+Solving the linear system
+  82 GMRES iterations
+n = 639, t = 19.9688:
+Solving the linear system
+  82 GMRES iterations
+n = 640, t =    20:
+Solving the linear system
+  82 GMRES iterations
+Output written to output-640
+===============================================
+===============================================
+
++--------------------------------------+------------------+------------+------------------+
+| Total wallclock time elapsed         | 4.668e+04s     9 | 4.668e+04s | 4.668e+04s     0 |
+|                                      |                  |                               |
+| Section                  | no. calls |   min time  rank |   avg time |   max time  rank |
++--------------------------------------+------------------+------------+------------------+
+| Coefficients calculation |       641 |     1.632s     5 |     1.761s |     2.436s     0 |
+| Matrix assembly          |         1 |         1s     4 |         1s |         1s     5 |
+| Output                   |       641 |      9843s    15 |      9843s |      9844s     0 |
+| Output coefficients      |       640 | 0.0006836s     4 |   0.01396s |     0.265s     0 |
+| System assembly          |       640 |     322.1s     0 |     323.1s |     323.4s     9 |
+| System solving           |       640 | 3.651e+04s     9 | 3.651e+04s | 3.651e+04s     2 |
++--------------------------------------+------------------+------------+------------------+
